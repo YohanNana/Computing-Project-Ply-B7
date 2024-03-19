@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/PAMS_logo.png">
+    <title>Admin Dashboard</title>
+
+    <link href="dist/css/style.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <div id="main-wrapper">
+        <header class="topbar" data-navbarbg="skin5">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                <div class="navbar-header" data-logobg="skin5">
+                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i
+                            class="ti-menu ti-close"></i></a>
+
+                    <a class="navbar-brand" href="index.html">
+
+                        <b class="logo-icon p-l-10">
+
+                            <img src="assets/images/PAMS_logo_small.png" alt="homepage" class="light-logo" />
+
+                        </b>
+
+                        <span class="logo-text">
+
+                            <img src="assets/images/logo-text.png" alt="homepage" class="light-logo" />
+
+                        </span>
+
+                    </a>
+
+                    <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)"
+                        data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i
+                            class="ti-more"></i></a>
+                </div>
+
+
+
+                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+
+
+
+                    <ul class="navbar-nav float-left mr-auto">
+                        <li class="nav-item d-none d-md-block"><a
+                                class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)"
+                                data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="d-none d-md-block">Activities <i class="fa fa-angle-down"></i></span>
+                                <span class="d-block d-md-none"><i class="fa fa-plus"></i></span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="index.html">Dashboard</a>
+                                <a class="dropdown-item" href="index2.html">Admin</a>
+
+
+                            </div>
+                        </li>
+
+                        <li class="nav-item search-box"> <a class="nav-link waves-effect waves-dark"
+                                href="javascript:void(0)"><i class="ti-search"></i></a>
+                            <form class="app-search position-absolute">
+                                <input type="text" class="form-control" placeholder="Search &amp; enter"> <a
+                                    class="srh-btn"><i class="ti-close"></i></a>
+                            </form>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav float-right">
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-bell font-24"></i>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="form-basic.html">Alert</a>
+                                <a class="dropdown-item" href="#">Rangers</a>
+                                <a class="dropdown-item" href="#">Emergencies</a>
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="2"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i
+                                    class="font-24 mdi mdi-comment-processing"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown"
+                                aria-labelledby="2">
+                                <ul class="list-style-none">
+                                    <li>
+                                        <div class="">
+                                            <!-- Message -->
+                                            <a href="javascript:void(0)" class="link border-top">
+                                                <div class="d-flex no-block align-items-center p-10">
+                                                    <span class="btn btn-success btn-circle"><i
+                                                            class="ti-calendar"></i></span>
+                                                    <div class="m-l-10">
+                                                        <h5 class="m-b-0">Ranger Allocations</h5>
+                                                        <span class="mail-desc">Check Current Allocations</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <!-- Message -->
+                                            <a href="javascript:void(0)" class="link border-top">
+                                                <div class="d-flex no-block align-items-center p-10">
+                                                    <span class="btn btn-info btn-circle"><i
+                                                            class="ti-settings"></i></span>
+                                                    <div class="m-l-10">
+                                                        <h5 class="m-b-0">Settings</h5>
+                                                        <span class="mail-desc">Account Settings</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <!-- Message -->
+                                            <a href="javascript:void(0)" class="link border-top">
+                                                <div class="d-flex no-block align-items-center p-10">
+                                                    <span class="btn btn-primary btn-circle"><i
+                                                            class="ti-user"></i></span>
+                                                    <div class="m-l-10">
+                                                        <h5 class="m-b-0">Animal Alerts</h5>
+                                                        <span class="mail-desc">Check Ongoing Alerts</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <!-- Message -->
+                                            <a href="javascript:void(0)" class="link border-top">
+                                                <div class="d-flex no-block align-items-center p-10">
+                                                    <span class="btn btn-danger btn-circle"><i
+                                                            class="fa fa-link"></i></span>
+                                                    <div class="m-l-10">
+                                                        <h5 class="m-b-0">Update Animal Data</h5>
+                                                        <span class="mail-desc">Update Animal related data &
+                                                            resources</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <!-- End Messages -->
+
+
+
+                        <!-- User profile and search -->
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href=""
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
+                                    src="assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
+                            <div class="dropdown-menu dropdown-menu-right user-dd animated">
+                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i>
+                                    My Profile</a>
+                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet m-r-5 m-l-5"></i>
+                                    My Balance</a>
+                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i>
+                                    Inbox</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="javascript:void(0)"><i
+                                        class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="javascript:void(0)"><i
+                                        class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
+                                <div class="dropdown-divider"></div>
+                                <div class="p-l-30 p-10"><a href="javascript:void(0)"
+                                        class="btn btn-sm btn-success btn-rounded">View Profile</a></div>
+                            </div>
+                        </li>
+
+                        <!-- User profile and search -->
+
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <!-- End Topbar header -->
+
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+
+        <aside class="left-sidebar" data-sidebarbg="skin5">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav" class="p-t-30">
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="main.html" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
+                                    class="hide-menu">Dashboard</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="Task panel.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span
+                                    class="hide-menu">Task Panel</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="community.html" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span
+                                    class="hide-menu">Community Enagagement</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="wildlife_monitor.html" aria-expanded="false"><i
+                                    class="mdi mdi-border-inside"></i><span class="hide-menu">Wildlife
+                                    Monitoring</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="finance.html" aria-expanded="false"><i class="mdi mdi-blur-linear"></i><span
+                                    class="hide-menu">Financial Overview</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="error-404.html" aria-expanded="false"><i class="mdi mdi-alert"></i><span
+                                    class="hide-menu">Error 404</span></a></li>
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-12 d-flex no-block align-items-center">
+                        <h3 class="page-title">Wild Life Monitoring</h3>
+                        <div class="ml-auto text-right">
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="container-fluid">
+
+                <div class="container-fluid">
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <div class="card">
+                                <img src="Horton Plain Animals/Sambar Deer.jpg" width="auto" height="385">
+                                <div class="card-body">
+                                    <h5 class="card-title"><b>Sambar Deer</b></h5>
+                                    <p class="card-text"><b>Species Information:</b><br>
+                                        Scientific name: Rusa unicolor.<br>
+                                        Common name: Sambar deer.<br>
+                                        Habitat: Forests, grasslands and wetlands.<br><br>
+                                        <b>Population:</b>Approximately 300-500 Individuals.<br><br>
+                                        <b>Potential Diseases:</b><br>
+                                        Tuberculosis.<br>
+                                        Hemorrhagic Fever.<br>
+                                        Mouth and Hoof Disease.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card">
+                                <img src="Horton Plain Animals/shrew.jpg" width="auto" height="385">
+                                <div class="card-body">
+                                    <h5 class="card-title"><b>Kelaart's Long-clawed Shrews</b></h5>
+                                    <p class="card-text"><b>Species Information:</b><br>
+                                        Scientific name: Feroculus feroculus.<br>
+                                        Common name: Kelaart's long-clawed shrew.<br>
+                                        Habitat: Forests and grasslands.<br><br>
+                                        <b>Population:</b>Approximately 1000+ Individuals.<br><br>
+                                        <b>Potential Diseases:</b><br>
+                                        Flea and Tick Infestations.<br>
+                                        Common Cold.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card">
+                                <img src="Horton Plain Animals/download.jpg" width="auto" height="385">
+                                <div class="card-body">
+                                    <h5 class="card-title"><b>Toque Macaques</b></h5>
+                                    <p class="card-text"><b>Species Information: </b><br>
+                                        Scientific name: Macaca sinica.<br>
+                                        Common name: Toque macaque.<br>
+                                        Habitat: Forests and urban areas.<br><br>
+                                        <b>Population:</b>Approximately 50-100 Individuals.<br><br>
+                                        <b>Potential Diseases:</b><br>
+                                        Monkey AIDS.<br>
+                                        Tuberculosis.<br>
+                                        Monkey Herpes.
+
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card">
+                                <img src="Horton Plain Animals/The purple faced langur.jpg" width="auto" height="385">
+                                <div class="card-body">
+                                    <h5 class="card-title"><b>Purple-faced Langurs</b></h5>
+                                    <p class="card-text"><b>Species Information: </b><br>
+                                        Scientific name: Semnopithecus vetulus.<br>
+                                        Common name: Purple-faced langur.<br>
+                                        Habitat: Tropical rainforests and coastal forests.<br><br>
+                                        <b>Population:</b>Approximately 200-300 Individuals.<br><br>
+                                        <b>Potential Diseases:</b><br>
+                                        Tummy Worms.<br>
+                                        Chest Cold.<br>
+                                        Kitty Toxoplasmosis.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card">
+                                <img src="Horton Plain Animals/Rusty-Spotted Cat.jpg" width="auto" height="385">
+                                <div class="card-body">
+                                    <h5 class="card-title"><b>Rusty-spotted Cat</b></h5>
+                                    <p class="card-text"><b>Species Information:</b><br>
+                                        Scientific name: Prionailurus rubiginosus.<br>
+                                        Common name: Rusty-spotted cat.<br>
+                                        Habitat: Dry forests, scrublands, and grasslands.<br><br>
+                                        <b>Population:</b>Approximately 20-30 Individuals.<br><br>
+                                        <b>Potential Diseases:</b><br>
+                                        Cat Leukemia.<br>
+                                        Cat HIV.<br>
+                                        Cat Parvo.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card">
+                                <img src="Horton Plain Animals/Sri Lankan Leopard.jpg" width="auto" height="385">
+                                <div class="card-body">
+                                    <h5 class="card-title"><b>Sri Lankan Leapord</b></h5>
+                                    <p class="card-text"><b>Species Information:</b><br>
+                                        Scientific name: Panthera pardus kotiya.<br>
+                                        Common name: Sri Lankan leopard.<br>
+                                        Habitat: Forests, grasslands, and scrublands.<br><br>
+                                        <b>Population:</b>Approximately 30-50 Individuals.<br><br>
+                                        <b>Potential Diseases:</b><br>
+                                        Dog Flu.<br>
+                                        Cat HIV.<br>
+                                        Dog Parvo.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card">
+                                <img src="Horton Plain Animals/Indian boar - Wikipedia.jpg" width="auto" height="385">
+                                <div class="card-body">
+                                    <h5 class="card-title"><b>Wild Boar</b></h5>
+                                    <p class="card-text"><b>Species Information:</b><br>
+                                        Scientific name: Sus scrofa.<br>
+                                        Common name: Wild boar.<br>
+                                        Habitat: Forests, grasslands, and agricultural areas.<br><br>
+                                        <b>Population:</b>Approximately 200-300 Individuals.<br><br>
+                                        <b>Potential Diseases:</b><br>
+                                        Pig Fever.<br>
+                                        Brucellosis.<br>
+                                        Pig Flu.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card">
+                                <img src="Horton Plain Animals/Stripe-necked Mongoose.jpg" width="auto" height="385">
+                                <div class="card-body">
+                                    <h5 class="card-title"><b>Stripe-necked Mongooses</b></h5>
+                                    <p class="card-text"><b>Species Information:</b><br>
+                                        Scientific name: Herpestes vitticollis.<br>
+                                        Common name: Stripe-necked mongoose.<br>
+                                        Habitat: Forests, grasslands, and scrublands.<br><br>
+                                        <b>Population:</b>Approximately 50-100 Individuals.<br><br>
+                                        <b>Potential Diseases:</b><br>
+                                        Dog Flu.<br>
+                                        Rabies.<br>
+                                        Lepto.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card">
+                                <img src="Horton Plain Animals/Sri Lankan spotted chevrotain.jpg" width="auto"
+                                    height="385">
+                                <div class="card-body">
+                                    <h5 class="card-title"><b>Sri Lankan Spotted Chevrotain</b></h5>
+                                    <p class="card-text"><b>Species Information:</b><br>
+                                        Scientific name: Moschiola meminna.<br>
+                                        Common name: Sri Lankan spotted chevrotain.<br>
+                                        Habitat: Forests and grasslands.<br><br>
+                                        <b>Population:</b>Approximately 50-100 Individuals.<br><br>
+                                        <b>Potential Diseases:</b><br>
+                                        Tick Illness.<br>
+                                        Anthrax.<br>
+                                        Lepto.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card">
+                                <img src="Horton Plain Animals/Indian munjkats.jpg" width="auto" height="385">
+                                <div class="card-body">
+                                    <h5 class="card-title"><b>Indian Muntjacs</b></h5>
+                                    <p class="card-text"><b>Species Information:</b><br>
+                                        Scientific name: Muntiacus muntjak><br>
+                                        Common name: Indian muntjac><br>
+                                        Habitat: Forests, grasslands, and scrublands.<br><br>
+                                        <b>Population:</b>Approximately 100-200 Individuals.<br><br>
+                                        <b>Potential Diseases:</b><br>
+                                        Chronic Wasting.<br>
+                                        Tick Disease.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card">
+                                <img src="Horton Plain Animals/Grizzled giant squirrel.jpg" width="auto" height="385">
+                                <div class="card-body">
+                                    <h5 class="card-title"><b>Grizzled Giant Squirrels</b></h5>
+                                    <p class="card-text"><b>Species Information:</b><br>
+                                        Scientific name: Ratufa macroura.<br>
+                                        Common name: Grizzled giant squirrel.<br>
+                                        Habitat: Tropical forests and woodlands.<br><br>
+                                        <b>Population:</b>Approximately 100-150 Individuals.<br><br>
+                                        <b>Potential Diseases:</b><br>
+                                        Squirrelpox.<br>
+                                        Squirrel TB.<br>
+                                        Squirrel Fleas.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card">
+                                <img src="Horton Plain Animals/Blue Fly catcher.jpg" width="auto" height="385">
+                                <div class="card-body">
+                                    <h5 class="card-title"><b>Dull-blue Flycatcher</b></h5>
+                                    <p class="card-text"><b>Species Information:</b><br>
+                                        Scientific Name: Eumyias sordida.<br>
+                                        Common Name: Dull-blue flycatcher.<br>
+                                        Habitat: Dense forests, forest edges, plantations, and gardens.<br><br>
+                                        <b>Population:</b>Approximately 500+ Individuals.<br><br>
+                                        <b>Potential Diseases:</b><br>
+                                        Avian Influenza (Bird Flu).<br>
+                                        Avian Malaria.<br>
+                                        Avian Pox.<br>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card">
+                                <img src="Horton Plain Animals/Sri Lanka White-eye - eBird.jpg" width="auto"
+                                    height="385">
+                                <div class="card-body">
+                                    <h5 class="card-title"><b>Sri Lanka White-eye</b></h5>
+                                    <p class="card-text"><b>Species Information:</b><br>
+                                        Scientific Name: Zosterops ceylonensis.<br>
+                                        Common Name: Sri Lanka white-eye.<br>
+                                        Habitat: Forests, wooded areas, scrublands, gardens, and urban areas.<br><br>
+                                        <b>Population:</b>Approximately 200-300 Individuals.<br><br>
+                                        <b>Potential Diseases:</b>
+                                        Bird Flu.<br>
+                                        Bird Malaria.<br>
+                                        Bird Cold.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card">
+                                <img src="Horton Plain Animals/Sri Lanka Wood Pigeon.jpg" width="auto" height="385">
+                                <div class="card-body">
+                                    <h5 class="card-title"><b>Sri Lanka Wood Pigeon</b></h5>
+                                    <p class="card-text"><b>Species Information:</b><br>
+                                        Scientific Name: Columba torringtoniae.<br>
+                                        Common Name: Sri Lanka wood pigeon.<br>
+                                        Habitat: Diverse forest types, including lowland rainforests and montane cloud
+                                        forests, with dense forest canopies.<br><br>
+                                        <b>Population:</b>Approximately 100-200 Individuals.<br><br>
+                                        <b>Potential Diseases:</b><br>
+                                        Avian Influenza (Bird Flu).<br>
+                                        Avian Pox.<br>
+                                        Avian Paramyxovirus (Newcastle Disease).
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <footer class="footer text-center">
+                All Rights Reserved by Group B7 (University of Plymouth Group Project). Designed & Developed by Group
+                B7.
+            </footer>
+
+        </div>
+
+    </div>
+
+    <script src="assets/libs/jquery/dist/jquery.min.js"></script>
+
+    <script src="assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script src="assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="assets/extra-libs/sparkline/sparkline.js"></script>
+
+    <script src="dist/js/waves.js"></script>
+
+    <script src="dist/js/sidebarmenu.js"></script>
+
+    <script src="dist/js/custom.min.js"></script>
+</body>
+
+</html>
