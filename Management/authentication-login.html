@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/PAMS_logo.png">
+    <title>Admin Dashboard</title>
+   
+    <link href="dist/css/style.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="main-wrapper">
+        
+        <!-- Preloader -->
+       
+        <div class="preloader">
+            <div class="lds-ripple">
+                <div class="lds-pos"></div>
+                <div class="lds-pos"></div>
+            </div>
+        </div>
+        
+        <!-- Preloader -->
+        
+        <!-- Login box -->
+       
+        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center bg-dark">
+            <div class="auth-box bg-dark border-top border-secondary">
+                <div id="loginform">
+                    <div class="text-center p-t-20 p-b-20" >
+                        <span style="color: white;">
+                            <h3>Admin Panel Login</h3>
+                        </span>
+                    </div>
+
+                    <!-- Form -->
+                    <form class="form-horizontal m-t-20" id="loginform" action="main.html">
+                        <div class="row p-b-30">
+                            <div class="col-12">
+                                <!--
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="ti-user"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control form-control-lg" id="username" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" required="" >
+                                </div>
+                                -->
+                                
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-danger text-white" id="basic-addon1"><i class="ti-email"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control form-control-lg" id="email" placeholder="Email Address" aria-label="E-mail" aria-describedby="basic-addon1" required="" >
+                                </div>
+                                
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-warning text-white" id="basic-addon2"><i class="ti-pencil"></i></span>
+                                    </div>
+                                    <input type="password" class="form-control form-control-lg" id="password" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" required="" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row border-top border-secondary">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <div class="p-t-20">
+                                        <button class="btn btn-block btn-lg btn-info" type="login" id="login">Login</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- Form -->
+
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- Login box.scss -->
+        
+        <!-- Right Sidebar -->
+        
+    </div>
+    
+    <!-- All Required js -->
+    
+    <script src="assets/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    
+    <!-- This page plugin js -->
+    
+    <script>
+
+    $('[data-toggle="tooltip"]').tooltip();
+    $(".preloader").fadeOut();
+    
+    // Login 
+    
+    $('#to-login').click(function(){
+        
+        $("#loginform").fadeIn();
+
+    });
+    </script>
+
+    <!-- Firebase SDK -->
+    
+    
+    
+</body>
+
+
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+    import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBm9ryFrZMedJ6p14RDxXD67boIOElE_-U",
+      authDomain: "hpms-85ed2.firebaseapp.com",
+      databaseURL: "https://hpms-85ed2-default-rtdb.firebaseio.com",
+      projectId: "hpms-85ed2",
+      storageBucket: "hpms-85ed2.appspot.com",
+      messagingSenderId: "1000800775577",
+      appId: "1:1000800775577:web:0f1a641e843ea088bc3708"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    const auth = getAuth();
+
+    //Reg User
+    /*
+    const submitButton = document.getElementById('login');
+
+    submitButton.addEventListener('click',(e) => {
+        e.preventDefault();
+
+        var email = document.getElementById('email').value;
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        
+    createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+     // Signed up 
+        const user = userCredential.user;
+
+            set(ref(database,'users/' + user.uid),{
+                username: username,
+                email: email,
+            })
+            alert('user created!');
+     // ...
+     })
+    .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+
+            alert(errorMessage);
+        // ..
+        });
+
+    });
+    */
+
+    //log user
+    const loginButton = document.getElementById('login');
+    
+    loginButton.addEventListener('click',(e) => {
+        e.preventDefault();
+
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        
+        const auth = getAuth();
+        signInWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+
+            const dt = new Date();
+                update(ref(database,'users/' + user.uid),{
+                    last_login : dt,
+                })
+
+                alert('User Loged in!');
+
+                // Redirect to main.html
+                window.location.href = "main.html";
+
+            // ...
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+
+            alert(errorMessage);
+          });
+
+        });
+
+        /*
+        const user = auth.currentUser;
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+              // User is signed in, see docs for a list of available properties
+              // https://firebase.google.com/docs/reference/js/auth.user
+              const uid = user.uid;
+              // ...
+            } else {
+              // User is signed out
+              // ...
+            }
+          });
+          */
+
+
+          /*
+    logout.addEventListener('click',(e) => {
+
+        signOut(auth).then(() => {
+
+            alert("User Loged out!");
+
+          }).catch((error) => {
+
+            const errorCode = error.code;
+            const errorMessage = error.message;
+
+            alert(errorMessage);
+          });
+
+    });
+    */
+
+</script>
+
+</html>
