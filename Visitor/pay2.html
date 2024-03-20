@@ -1,0 +1,43 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stripe Payment</title>
+
+    <!--Stripe Library-->
+    <script src="https://js.stripe.com/v3/"></script>
+    <link href="pay2.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+    <!--Checkout Button-->
+    <button id="checkout">checkout</button>
+
+    <script>
+        var stripe = Stripe(
+            "pk_test_51OwGqe03Pm2h3rzxj8abMDcFRAXQloTlBBTgVJeF7GzFsUPvrjRrCegmhLkcuPVvlb5Zs31qrCoNzk2W1spc7N5z000AcQPJiG"
+        );
+        document.getElementById("checkout").addEventListener("click", function(){
+            stripe.redirectToCheckout({
+                lineItems: [
+                    {
+                        price:"price_1OwIxh03Pm2h3rzxG8jLXdWq",
+                        quantity:1,
+                        
+                    },
+                ],
+                mode:"payment",
+                successUrl:"https://www.google.com/",
+                cancelUrl:"http://127.0.0.1:5500/Computing-Project-Ply-B7/Visitor/Tickets.html",
+            })
+            .then(function(result){
+                
+            });
+            
+        });
+    </script>
+</body>
+</html>
