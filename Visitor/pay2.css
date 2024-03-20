@@ -1,27 +1,84 @@
+
+
+
 body {
+    background-color: #ccc;
+    font-weight: bold;
+}
+
+/* Style the billing form */
+.billing-form {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+h1{
+    font-family: sans-serif;
+    color: #333;
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
 }
 
-.container {
-    text-align: center;
+.billing-form h2 {
+    color: #ff6f61; /* Reddish-pink color */
+    font-size: 1.5em;
+    margin-bottom: 10px;
 }
 
+.billing-form label {
+    font-weight: bold;
+    color: #333; /* Dark gray color */
+}
+
+.billing-form input[type="text"],
+.billing-form input[type="email"],
+.billing-form input[type="tel"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.billing-form input[type="text"]:focus,
+.billing-form input[type="email"]:focus,
+.billing-form input[type="tel"]:focus {
+    outline: none;
+    border-color: #70a1ff; /* Blue color */
+}
+
+/* Style the quantity selector */
+.quantity-selector {
+    margin-top: 20px;
+}
+
+.quantity-selector label {
+    font-weight: bold;
+    color: #333; /* Dark gray color */
+}
+
+.quantity-selector input[type="number"] {
+    width: 100px; /* Reduced width */
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Style the checkout button */
 #checkout {
-    background-color: #4CAF50;
-    color: white;
-    padding: 12px 24px;
-    font-size: 16px;
+    background-color: #4caf50; /* Green color */
+    color: #fff; /* White text color */
+    margin-left: 70px;
+    padding: 10px 20px;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
 }
 
 #checkout:hover {
-    background-color: #45a049;
+    background-color: #45a049; /* Darker green color on hover */
 }
-

@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,34 +8,69 @@
     <!--Stripe Library-->
     <script src="https://js.stripe.com/v3/"></script>
     <link href="pay.css" rel="stylesheet" type="text/css">
-
 </head>
 <body>
-   
-    <!--Checkout Button-->
-    <button id="checkout">checkout</button>
+    <h1><u>Billing Details & Checkout</u></h1>
+
+    <!-- Billing Form -->
+    <div class="billing-form">
+        <h2>Billing Form</h2>
+        <form id="billing-form">
+            <label for="first-name">First Name:</label>
+            <input type="text" id="first-name" name="first-name" required><br>
+
+            <label for="last-name">Last Name:</label>
+            <input type="text" id="last-name" name="last-name" required><br>
+
+            <label for="phone">Phone No:</label>
+            <input type="tel" id="phone" name="phone" required><br>
+
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required><br>
+
+            <label for="country">Country/Region:</label>
+            <input type="text" id="country" name="country" required><br>
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required><br>
+
+            <label for="zip-code">Zip Code:</label>
+            <input type="text" id="zip-code" name="zip-code" required><br>
+        </form>
+    </div>
+
+    <!-- Quantity Selector -->
+    <div class="quantity-selector">
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" min="1" value="0">
+    </div>
+
+    <!-- Checkout Button -->
+    <button id="checkout">Checkout</button>
 
     <script>
         var stripe = Stripe(
             "pk_test_51OwGqe03Pm2h3rzxj8abMDcFRAXQloTlBBTgVJeF7GzFsUPvrjRrCegmhLkcuPVvlb5Zs31qrCoNzk2W1spc7N5z000AcQPJiG"
         );
+
         document.getElementById("checkout").addEventListener("click", function(){
+            var quantity = document.getElementById("quantity").value; // Get quantity from input
+            var priceId = "price_1OwHKZ03Pm2h3rzxNLPBk0iH"; // Your price ID
+            var totalPrice = quantity * 1000; // Assuming price is in cents (1000 cents = $10)
+
             stripe.redirectToCheckout({
                 lineItems: [
                     {
-                        price:"price_1OwHKZ03Pm2h3rzxNLPBk0iH",
-                        quantity:1,
-                        
+                        price: priceId,
+                        quantity: parseInt(quantity),
                     },
                 ],
-                mode:"payment",
-                successUrl:"https://www.google.com/",
-                cancelUrl:"http://127.0.0.1:5500/Computing-Project-Ply-B7/Visitor/Tickets.html"
-            })
-            .then(function(result){
-                
+                mode: "payment",
+                successUrl: "https://www.google.com/",
+                cancelUrl: "http://127.0.0.1:5500/Computing-Project-Ply-B7/Visitor/Tickets.html",
+            }).then(function(result){
+                // Handle redirection or any other action after checkout
             });
-            
         });
     </script>
 </body>
