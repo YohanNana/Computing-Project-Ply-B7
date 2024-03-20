@@ -147,11 +147,7 @@
     <div class="ticket created-by-anniedotexe">
       <div class="left">
         <div class="image">
-          <p class="admit-one">
-            <span>Local</span>
-            <span>Local</span>
-            <span>Local</span>
-          </p>
+          <p class="admit-one"></p>
           <div class="ticket-number">
             <p>
               #20030220
@@ -170,7 +166,6 @@
           </div>
           <div class="time">
             <p>6:00 AM <span>TO</span> 4:00 PM</p>
-            
           </div>
           <p class="location"><span>Horton Plains National Park, Nuwara Eliya ,</span>
             <span> Sri Lanka</span>
@@ -204,12 +199,12 @@
     <div class="container1">
       <div class="ticket-selection">
         <h2>Select Ticket Type</h2>
-        <label for="local-ticket">Local Ticket</label>
-        <input type="radio" id="local-ticket" name="ticket-type" value="local" checked>
+        <label for="local-ticket">Local Ticket....</label>
+        <button onclick="window.location.href='pay2.html'" id="purchase-btn">Buy</button><br>
         <label for="foreign-ticket">Foreign Ticket</label>
-        <input type="radio" id="foreign-ticket" name="ticket-type" value="foreign">
+        <button onclick="window.location.href='payment.html'" id="purchase-btn">Buy</button>
       </div>
-      <div class="ticket-details" id="foreign-packages" style="display: none;">
+      <div class="ticket-details" id="foreign-packages" style="display:none;">
         <h3>Foreign Ticket Packages</h3>
         <ul>
           <li><input type="radio" id="foreign-package1" name="foreign-package" value="1"><label for="foreign-package1">1 foreign adult and local driver - $43 USD</label></li>
