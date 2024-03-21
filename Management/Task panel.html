@@ -96,14 +96,14 @@
                         <li class="nav-item d-none d-md-block"><a
                                 class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)"
                                 data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>
-                        
+
                     </ul>
                     <!-- ============================================================== -->
                     <!-- Right side toggle and nav items -->
                     <!-- ============================================================== -->
                     <ul class="navbar-nav float-right">
                         <!-- ============================================================== -->
-                        
+
                         <!-- ============================================================== -->
                         <!-- Messages -->
                         <!-- ============================================================== -->
@@ -127,13 +127,13 @@
                                                         <span class="mail-desc">Ongoing Events</span>
                                                     </div>
                                                 </div>
-                                            </a>                                                                                       
+                                            </a>
                                         </div>
                                     </li>
                                 </ul>
                             </div>
                         </li>
-                        
+
 
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
@@ -273,9 +273,10 @@
                                 <div class="border-top">
                                     <div class="card-body">
                                         <button type="button" id="submitData" class="btn btn-primary">Submit</button>
-                                        <button type="button" id="updateData" class="btn btn-primary">Update</button>
-                                        <button type="button" id="deleteData" class="btn btn-primary">Delete</button>
-                                        <button type="reset" class="btn btn-primary">Reset</button>
+                                        <button type="button" id="updateData" class="btn btn-success">Update</button>
+                                        <button type="button" id="deleteData" class="btn btn-danger">Delete</button>
+                                        <button type="button" id="getData" class="btn btn-warning">Get Data</button>
+                                        <button type="reset" class="btn btn-secondary">Reset</button>
                                     </div>
                                 </div>
                             </form>
@@ -542,7 +543,7 @@
 <script type="module">
 
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-    import { getFirestore, setDoc, addDoc, doc, collection, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+    import { getFirestore, setDoc, addDoc, doc, collection, updateDoc, deleteDoc, query, where, getDoc, getDocs, onSnapshot } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
 
 
     const firebaseConfig = {
@@ -590,7 +591,7 @@
         var email = document.getElementById('email').value;
         var message = document.getElementById('msg').value;
 
-        updateDoc(doc(db, "rangers", ''), {
+        updateDoc(doc(db, "rangers", '0ieQTuBBPc4MhEgxw3Ea'), {
             name: name,
             rid: rangerID,
             contactNo: contactNo,
@@ -607,15 +608,112 @@
 
         var name = document.getElementById('name').value;
         var rangerID = document.getElementById('rid').value;
-        var contactNo = document.getElementById('no').value;
-        var email = document.getElementById('email').value;
-        var message = document.getElementById('msg').value;
 
-        deleteDoc(doc(db, "rangers", ''));
+        deleteDoc(doc(db, "rangers", '0ieQTuBBPc4MhEgxw3Ea'));
 
         alert("Ranger Deleted!");
 
     });
+
+
+    /*
+    getData.addEventListener('click', (e) => {
+
+        //get all data
+        getDocs(collection(db, "rangers")).then(docSnap =>{
+            let rangers = [];
+            docSnap.forEach((doc) => {
+                rangers.push({ ...doc.data(), id: doc.id })
+            });
+                console.log("Document data:", rangers);
+        });
+    });
+    */
+
+
+    getData.addEventListener('click', (e) => {
+
+        const q = query(collection(db, "rangers"));
+
+        getDocs(q).then(docSnap => {
+            let rangers = [];
+            docSnap.forEach((doc) => {
+                rangers.push({ ...doc.data(), id: doc.id })
+            });
+            console.log("Document data:", rangers);
+
+        });
+
+    });
+
+    /* listen for realtime updates
+    const unsub = onSnapshot(doc(db, "users", "id"), (doc) => {
+        console.log("Current data: ", doc.data());
+    });
+    */
+
+
+
+    /*
+    getData.addEventListener('click', (e) => {
+
+        const q = query(collection(db, "rangers"));
+
+        getDocs(q).then(docSnap => {
+            let rangers = [];
+            docSnap.forEach((doc) => {
+                rangers.push({ ...doc.data(), id: doc.id })
+            });
+            console.log("Document data:", rangers[0]['name']);
+
+        });
+
+    });
+    
+    
+    this is for read data in a query based with data recognition
+    getData.addEventListener('click', (e) => {
+
+        const q = query(collection(db, "rangers"), where("rid", "==", '0001'));
+
+        getDocs(q).then(docSnap => {
+            let rangers = [];
+            docSnap.forEach((doc) => {
+                rangers.push({ ...doc.data(), id: doc.id })
+            });
+            console.log("Document data:", rangers);
+
+        });
+
+    });
+    */
+
+
+    /* this for get a specific element
+    getData.addEventListener('click', (e) => {
+        getDoc(doc(db, 'rangers', 'Co4217nEcAdoE1yzIYXg')).then(docSnap => {
+            if (docSnap.exists()) {
+                console.log('Document data: ', docSnap.data()[])
+            } else {
+                console.log('no such data!')
+            }
+        })
+
+    });
+    */
+
+    /*
+    getData.addEventListener('click', (e) => {
+        getDoc(doc(db, 'rangers', 'Co4217nEcAdoE1yzIYXg')).then(docSnap => {
+            if (docSnap.exists()) {
+                console.log('Document data: ', docSnap.data()['name'])
+            } else {
+                console.log('no such data!')
+            }
+        })
+
+    });
+    */
 
 
 

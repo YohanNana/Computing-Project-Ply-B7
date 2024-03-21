@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div>
+        <table>
+            <thead>
+                <th>Ranger ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Contact No</th>
+                <th>Message</th>
+            </thead>
+            <tbody id="tbody1"></tbody>
+        </table>
+    </div>
+
+</body>
+
+<script type="module">
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+    import { getFirestore, setDoc, addDoc, doc, collection, updateDoc, deleteDoc, query, where, getDoc, getDocs, onSnapshot } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyBm9ryFrZMedJ6p14RDxXD67boIOElE_-U",
+        authDomain: "hpms-85ed2.firebaseapp.com",
+        databaseURL: "https://hpms-85ed2-default-rtdb.firebaseio.com",
+        projectId: "hpms-85ed2",
+        storageBucket: "hpms-85ed2.appspot.com",
+        messagingSenderId: "1000800775577",
+        appId: "1:1000800775577:web:0f1a641e843ea088bc3708"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    // Initialize Cloud Firestore and get a reference to the service
+    const db = getFirestore(app);
+
+
+    var rid = 1;
+    var tbody = document.getElementById('tbody1');
+
+    function AddItemToTable(name, no, contactNo, msg) {
+        let trow = document.createElement("tr");
+        let td1 = document.createElement('td');
+        let td2 = document.createElement('td');
+        let td3 = document.createElement('td');
+        let td4 = document.createElement('td');
+        let td5 = document.createElement('td');
+
+        td1.innerHTML = ++rid;
+        td2.innerHTML = name;
+        td3.innerHTML = no;
+        td4.innerHTML = contactNo;
+        td5.innerHTML = msg;
+
+        trow.appendChild(td1);
+        trow.appendChild(td2);
+        trow.appendChild(td3);
+        trow.appendChild(td4);
+        trow.appendChild(td5);
+
+        tbody.appendChild(trow);
+    }
+
+    function AddAllItemsToTable(TheRangers) {
+        rid = 0;
+        tbody.innerHTML = "";
+        TheRangers.forEach(element => {
+            AddItemToTable(element.name, element.no, element.contactNo, element.message);
+        });
+    }
+
+
+
+    async function GetAllDataOnce() {
+        const querySnapshot = await getDocs(collection(db, "rangers"));
+
+        var rangers = [];
+
+        querySnapshot.forEach(doc => {
+            rangers.push(doc.data());
+        });
+
+        AddAllItemsToTable(rangers);
+    }
+
+    window.onload = GetAllDataOnce;
+
+</script>
+
+</html>
