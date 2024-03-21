@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,9 @@
 
     <!--Stripe Library-->
     <script src="https://js.stripe.com/v3/"></script>
-    <link href="pay.css" rel="stylesheet" type="text/css">
+    <link href="css/pay.css" rel="stylesheet" type="text/css">
 </head>
+
 <body>
     <h1><u>Billing Details & Checkout</u></h1>
 
@@ -53,7 +55,7 @@
             "pk_test_51OwGqe03Pm2h3rzxj8abMDcFRAXQloTlBBTgVJeF7GzFsUPvrjRrCegmhLkcuPVvlb5Zs31qrCoNzk2W1spc7N5z000AcQPJiG"
         );
 
-        document.getElementById("checkout").addEventListener("click", function(){
+        document.getElementById("checkout").addEventListener("click", function () {
             var quantity = document.getElementById("quantity").value; // Get quantity from input
             var priceId = "price_1OwHKZ03Pm2h3rzxNLPBk0iH"; // Your price ID
             var totalPrice = quantity * 1000; // Assuming price is in cents (1000 cents = $10)
@@ -68,10 +70,11 @@
                 mode: "payment",
                 successUrl: "https://www.google.com/",
                 cancelUrl: "http://127.0.0.1:5500/Computing-Project-Ply-B7/Visitor/Tickets.html",
-            }).then(function(result){
+            }).then(function (result) {
                 // Handle redirection or any other action after checkout
             });
         });
     </script>
 </body>
+
 </html>
