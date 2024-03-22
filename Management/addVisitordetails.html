@@ -36,13 +36,16 @@
         <table>
             <thead>
                 <th>No</th>
-                <th>Ranger ID</th>
-                <th>Name</th>
+                <th>First Name</th>
+                <th>Last Name</th>
                 <th>Email</th>
-                <th>Contact No</th>
-                <th>Message</th>
+                <th>Phone No</th>
+                <th>Address</th>
+                <th>Country</th>
+                <th>ZipCode</th>
+                <th>Quantity</th>
             </thead>
-            <tbody id="tbody1"></tbody>
+            <tbody id="tbody2"></tbody>
         </table>
     </div>
 
@@ -71,9 +74,9 @@
 
 
     var id = 0;
-    var tbody = document.getElementById('tbody1');
+    var tbody = document.getElementById('tbody2');
 
-    function AddItemToTable(rid, name, no, contactNo, msg) {
+    function AddItemToTable(FName, LastName, Email, PhNo, Address, Country, ZipCode, Quantity) {
         let trow = document.createElement("tr");
         let td1 = document.createElement('td');
         let td2 = document.createElement('td');
@@ -81,13 +84,19 @@
         let td4 = document.createElement('td');
         let td5 = document.createElement('td');
         let td6 = document.createElement('td');
+        let td7 = document.createElement('td');
+        let td8 = document.createElement('td');
+        let td9 = document.createElement('td');
 
         td1.innerHTML = ++id;
-        td2.innerHTML = rid;
-        td3.innerHTML = name;
-        td4.innerHTML = no;
-        td5.innerHTML = contactNo;
-        td6.innerHTML = msg;
+        td2.innerHTML = FName;
+        td3.innerHTML = LastName;
+        td4.innerHTML = Email;
+        td5.innerHTML = PhNo;
+        td6.innerHTML = Address;
+        td7.innerHTML = Country;
+        td8.innerHTML = ZipCode;
+        td9.innerHTML = Quantity;
 
         trow.appendChild(td1);
         trow.appendChild(td2);
@@ -95,30 +104,33 @@
         trow.appendChild(td4);
         trow.appendChild(td5);
         trow.appendChild(td6);
+        trow.appendChild(td7);
+        trow.appendChild(td8);
+        trow.appendChild(td9);
 
         tbody.appendChild(trow);
     }
 
-    function AddAllItemsToTable(TheRangers) {
+    function AddAllItemsToTable(TheVisitors) {
         id = 0;
         tbody.innerHTML = "";
-        TheRangers.forEach(element => {
-            AddItemToTable(element.rid, element.name, element.no, element.contactNo, element.message);
+        TheVisitors.forEach(element => {
+            AddItemToTable(element.FName, element.LastName, element.Email, element.PhNo, element.Address, element.Country, element.ZipCode, element.Quantity);
         });
     }
 
 
 
     async function GetAllDataOnce() {
-        const querySnapshot = await getDocs(collection(db, "rangers"));
+        const querySnapshot = await getDocs(collection(db, "Visitors"));
 
-        var rangers = [];
+        var Visitors = [];
 
         querySnapshot.forEach(doc => {
-            rangers.push(doc.data());
+            Visitors.push(doc.data());
         });
 
-        AddAllItemsToTable(rangers);
+        AddAllItemsToTable(Visitors);
     }
 
     window.onload = GetAllDataOnce;

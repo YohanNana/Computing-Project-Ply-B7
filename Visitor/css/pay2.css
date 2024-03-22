@@ -68,6 +68,16 @@ h1{
     border-radius: 5px;
 }
 
+.checkout {
+    background-color: #4caf50; /* Green color */
+    color: #fff; /* White text color */
+    margin-left: 70px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 /* Style the checkout button */
 #checkout {
     background-color: #4caf50; /* Green color */
