@@ -8,8 +8,8 @@
             // allowed templates are:
             // %s -> series label,
             // %c -> series color,
-            // %lx -> x axis label (requires flot-axislabels plugin https://github.com/markrcote/flot-axislabels),
-            // %ly -> y axis label (requires flot-axislabels plugin https://github.com/markrcote/flot-axislabels),
+            // %lx -> x axis label,
+            // %ly -> y axis label,
             // %x -> X value,
             // %y -> Y value,
             // %x.2 -> precision of X value,

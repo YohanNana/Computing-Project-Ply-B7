@@ -1,17 +1,4 @@
-// stylelint-disable declaration-no-important, selector-no-qualifying-type, property-no-vendor-prefix
 
-
-// Reboot
-//
-// Normalization of HTML elements, manually forked from Normalize.css to remove
-// styles targeting irrelevant browsers while applying new styles.
-//
-// Normalize is licensed MIT. https://github.com/necolas/normalize.css
-
-
-// Document
-//
-// Change from `box-sizing: content-box` so that `width` is not affected by `padding` or `border`.
 
 *,
 *::before,
@@ -253,10 +240,7 @@ a {
   }
 }
 
-// And undo these styles for placeholder links/named anchors (without href).
-// It would be more straightforward to just use a[href] in previous block, but that
-// causes specificity issues in many other styles that are too complex to fix.
-// See https://github.com/twbs/bootstrap/issues/19402
+
 
 a:not([href]):not([class]) {
   &,
@@ -388,8 +372,7 @@ label {
   display: inline-block; // 1
 }
 
-// Remove the default `border-radius` that macOS Chrome adds.
-// See https://github.com/twbs/bootstrap/issues/24093
+
 
 button {
   // stylelint-disable-next-line property-disallowed-list
@@ -423,16 +406,13 @@ button,
 select {
   text-transform: none;
 }
-// Set the cursor for non-`<button>` buttons
-//
-// Details at https://github.com/twbs/bootstrap/pull/30562
+
 [role="button"] {
   cursor: pointer;
 }
 
 select {
-  // Remove the inheritance of word-wrap in Safari.
-  // See https://github.com/twbs/bootstrap/issues/24990
+
   word-wrap: normal;
 
   // Undo the opacity change from Chrome
@@ -441,8 +421,6 @@ select {
   }
 }
 
-// Remove the dropdown arrow in Chrome from inputs built with datalists.
-// See https://stackoverflow.com/a/54997118
 
 [list]::-webkit-calendar-picker-indicator {
   display: none;
@@ -479,12 +457,7 @@ textarea {
   resize: vertical; // 1
 }
 
-// 1. Browsers set a default `min-width: min-content;` on fieldsets,
-//    unlike e.g. `<div>`s, which have `min-width: 0;` by default.
-//    So we reset that to ensure fieldsets behave more like a standard block element.
-//    See https://github.com/twbs/bootstrap/issues/12359
-//    and https://html.spec.whatwg.org/multipage/#the-fieldset-and-legend-elements
-// 2. Reset the default outline behavior of fieldsets so they don't affect page layout.
+
 
 fieldset {
   min-width: 0; // 1
@@ -493,10 +466,7 @@ fieldset {
   border: 0; // 2
 }
 
-// 1. By using `float: left`, the legend will behave like a block element.
-//    This way the border of a fieldset wraps around the legend if present.
-// 2. Fix wrapping bug.
-//    See https://github.com/twbs/bootstrap/issues/29712
+
 
 legend {
   float: left; // 1
@@ -512,8 +482,7 @@ legend {
   }
 }
 
-// Fix height of inputs with a type of datetime-local, date, month, week, or time
-// See https://github.com/twbs/bootstrap/issues/18842
+
 
 ::-webkit-datetime-edit-fields-wrapper,
 ::-webkit-datetime-edit-text,
@@ -529,21 +498,14 @@ legend {
   height: auto;
 }
 
-// 1. Correct the outline style in Safari.
-// 2. This overrides the extra rounded corners on search inputs in iOS so that our
-//    `.form-control` class can properly style them. Note that this cannot simply
-//    be added to `.form-control` as it's not specific enough. For details, see
-//    https://github.com/twbs/bootstrap/issues/11586.
+
 
 [type="search"] {
   outline-offset: -2px; // 1
   -webkit-appearance: textfield; // 2
 }
 
-// 1. A few input types should stay LTR
-// See https://rtlstyling.com/posts/rtl-styling#form-inputs
-// 2. RTL only output
-// See https://rtlcss.com/learn/usage-guide/control-directives/#raw
+
 
 /* rtl:raw:
 [type="tel"],
