@@ -1,10 +1,4 @@
-/**
-* asColorPicker v0.4.4
-* https://github.com/amazingSurge/jquery-asColorPicker
-*
-* Copyright (c) amazingSurge
-* Released under the LGPL-3.0 license
-*/
+
 import $$1 from 'jquery';
 import AsColor from 'jquery-asColor';
 import AsGradient from 'jquery-asGradient';

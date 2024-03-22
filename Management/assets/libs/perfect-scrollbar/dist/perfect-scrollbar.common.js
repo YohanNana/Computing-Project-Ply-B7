@@ -1,8 +1,4 @@
-/*!
- * perfect-scrollbar v1.3.0
- * (c) 2017 Hyunje Jun
- * @license MIT
- */
+
 'use strict';
 
 function get(element) {

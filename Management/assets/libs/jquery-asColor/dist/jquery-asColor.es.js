@@ -1,10 +1,4 @@
-/**
-* jQuery asColor v0.3.6
-* https://github.com/amazingSurge/asColor
-*
-* Copyright (c) amazingSurge
-* Released under the LGPL-3.0 license
-*/
+
 import $ from 'jquery';
 
 var DEFAULTS = {

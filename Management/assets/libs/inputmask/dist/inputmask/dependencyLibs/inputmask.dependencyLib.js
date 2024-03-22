@@ -1,10 +1,4 @@
-/*!
-* dependencyLibs/inputmask.dependencyLib.js
-* https://github.com/RobinHerbots/Inputmask
-* Copyright (c) 2010 - 2017 Robin Herbots
-* Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php)
-* Version: 3.3.11
-*/
+
 
 !function(factory) {
     "function" == typeof define && define.amd ? define([ "../global/window", "../global/document" ], factory) : "object" == typeof exports ? module.exports = factory(require("../global/window"), require("../global/document")) : window.dependencyLib = factory(window, document);

@@ -1,15 +1,4 @@
-/*!
- * jQuery UI Touch Punch Improved 0.3.1
- *
- *
- * Copyright 2013, Chris Hutchinson <chris@brushd.com>
- * Original jquery-ui-touch-punch Copyright 2011, Dave Furfero
- * Dual licensed under the MIT or GPL Version 2 licenses.
- *
- * Depends:
- * jquery.ui.widget.js
- * jquery.ui.mouse.js
- */
+
 (function ($) {
 	var pointerEnabled = window.navigator.pointerEnabled
 		|| window.navigator.msPointerEnabled;

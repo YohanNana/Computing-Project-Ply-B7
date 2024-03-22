@@ -1,15 +1,4 @@
-/*! DataTables Foundation integration
- * ©2011-2015 SpryMedia Ltd - datatables.net/license
- */
 
-/**
- * DataTables integration for Foundation. This requires Foundation 5 and
- * DataTables 1.10 or newer.
- *
- * This file sets the defaults and adds options to DataTables to style its
- * controls using Foundation. See http://datatables.net/manual/styling/foundation
- * for further information.
- */
 (function( factory ){
 	if ( typeof define === 'function' && define.amd ) {
 		// AMD

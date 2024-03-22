@@ -1,10 +1,4 @@
-/**
-* jQuery asGradient v0.3.3
-* https://github.com/amazingSurge/jquery-asGradient
-*
-* Copyright (c) amazingSurge
-* Released under the LGPL-3.0 license
-*/
+
 import $ from 'jquery';
 import Color from 'jquery-asColor';
 
