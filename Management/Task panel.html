@@ -233,10 +233,10 @@
                                 <div class="card-body">
                                     <h4 class="card-title">Assign Task For Rangers</h4>
                                     <div class="form-group row">
-                                        <label for="fname"
+                                        <label for="rname"
                                             class="col-sm-3 text-right control-label col-form-label">Name</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="name" placeholder="Name Here">
+                                            <input type="text" class="form-control" id="rname" placeholder="Name Here">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -252,24 +252,26 @@
                                             class="col-sm-3 text-right control-label col-form-label">Email
                                             Address</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="email"
+                                            <input type="text" class="form-control" id="remail"
                                                 placeholder="Email Address Here">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="loc"
-                                            class="col-sm-3 text-right control-label col-form-label">Location</label>
+                                        <label for="loc" class="col-sm-3 text-right control-label col-form-label"
+                                            id="location">Location</label>
                                         <div class="col-sm-9">
                                             <select class="select2 form-control custom-select"
-                                                style="width: 100%; height:36px;">
+                                                style="width: 100%; height:36px;" id="loc">
                                                 <option>Select Location</option>
 
-                                                <option value="WET">World's End Trail</option>
-                                                <option value="UT">Udaweriya Trail</option>
-                                                <option value="DT">Dayagama Trail</option>
-                                                <option value="BT">Bogawanthalawa Trail</option>
-                                                <option value="TMT">Thotupola Mountain Trail</option>
-                                                <option value="KM">Kirigalpoththa Mountain</option>
+                                                <option value="World's End Trail">World's End Trail</option>
+                                                <option value="Udaweriya Trail">Udaweriya Trail</option>
+                                                <option value="Dayagama Trail">Dayagama Trail</option>
+                                                <option value="Bogawanthalawa Trail">Bogawanthalawa Trail</option>
+                                                <option value="Thotupola Mountain">Thotupola Mountain</option>
+                                                <option value="Kirigalpoththa Mountain">Kirigalpoththa Mountain</option>
+                                                <option value="Bakers Falls">Bakers Falls</option>
+                                                <option value="Near Ticket Office">Near Ticket Office</option>
 
                                             </select>
                                         </div>
@@ -285,13 +287,50 @@
                                 </div>
                                 <div class="border-top">
                                     <div class="card-body">
-                                        <button type="button" id="submitsData" class="btn btn-primary">Submit</button>
+                                        <button type="button" id="submitTask" class="btn btn-primary">Submit</button>
                                         <button type="reset" class="btn btn-secondary">Reset</button>
                                     </div>
                                 </div>
                             </form>
 
                         </div>
+
+
+
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Ranger Tasks Details</h5>
+                                <div class="table-responsive">
+                                    <table id="zero_config" class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Name</th>
+                                                <th>Ranger ID</th>
+                                                <th>Email</th>
+                                                <th>Location</th>
+                                                <th>Task</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbody_tasks"></tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Name</th>
+                                                <th>Ranger ID</th>
+                                                <th>Email</th>
+                                                <th>Location</th>
+                                                <th>Task</th>
+                                            </tr>
+                                        </tfoot>
+
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+
+
 
 
                         <div class="card">
@@ -429,8 +468,18 @@
                                                 <th>Address</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                        <tbody id="tbody1"></tbody>
+                                        <tbody id="tbody_rangers"></tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Ranger ID</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Contact No</th>
+                                                <th>Address</th>
+                                            </tr>
+                                        </tfoot>
+
                                     </table>
                                 </div>
 
@@ -589,11 +638,10 @@
     <script src="dist/js/pages/mask/mask.init.js"></script>
     <script src="assets/libs/select2/dist/js/select2.full.min.js"></script>
     <script src="assets/libs/select2/dist/js/select2.min.js"></script>
-    <script src="assets/libs/jquery-asColor/dist/jquery-asColor.min.js"></script>
-    <script src="assets/libs/jquery-asGradient/dist/jquery-asGradient.js"></script>
-    <script src="assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
     <script src="assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-    <script src="assets/libs/quill/dist/quill.min.js"></script>
+    <script src="assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
+    <script src="assets/extra-libs/multicheck/jquery.multicheck.js"></script>
+    <script src="assets/extra-libs/DataTables/datatables.min.js"></script>
     <script>
         //***********************************//
         // For select 2
@@ -661,6 +709,8 @@
     const database = getDatabase(app);
     const auth = getAuth();
 
+
+    // Register Rangers 
     submitData.addEventListener('click', (e) => {
 
         var name = document.getElementById('name').value;
@@ -680,7 +730,6 @@
         alert("Ranger Added!");
 
     });
-
 
     updateData.addEventListener('click', (e) => {
 
@@ -715,35 +764,28 @@
     });
 
 
-    /*
-    getData.addEventListener('click', (e) => {
+    // submit tasks
+    submitTask.addEventListener('click', (e) => {
 
-        //get all data
-        getDocs(collection(db, "rangers")).then(docSnap =>{
-            let rangers = [];
-            docSnap.forEach((doc) => {
-                rangers.push({ ...doc.data(), id: doc.id })
-            });
-                console.log("Document data:", rangers);
-        });
-    });
-    */
+        var name = document.getElementById('rname').value;
+        var rangerID = document.getElementById('rid').value;
+        var email = document.getElementById('remail').value;
+        var location = document.getElementById('loc').value;
+        var task = document.getElementById('task').value;
 
-
-    getData.addEventListener('click', (e) => {
-
-        const q = query(collection(db, "rangers"));
-
-        getDocs(q).then(docSnap => {
-            let rangers = [];
-            docSnap.forEach((doc) => {
-                rangers.push({ ...doc.data(), id: doc.id })
-            });
-            console.log("Document data:", rangers);
-
+        addDoc(collection(db, "RangerTasks"), {
+            Name: name,
+            RangerId: rangerID,
+            Email: email,
+            Location: location,
+            Task: task
         });
 
+        alert("Task Added!");
+
     });
+
+
 
     // log out function
     logoutBtn.addEventListener('click', (e) => {
@@ -761,6 +803,97 @@
         });
 
     });
+
+
+    // get table data for 2 tables
+    //start
+
+
+    // Function to add tasks to the table
+    async function AddTasksToTable() {
+        const querySnapshot = await getDocs(collection(db, "RangerTasks"));
+        const tbodyTasks = document.getElementById('tbody_tasks');
+
+        let tid = 0;
+        tbodyTasks.innerHTML = "";
+        querySnapshot.forEach(doc => {
+            const data = doc.data();
+            tid++;
+            const newRow = `<tr>
+                                <td>${tid}</td>
+                                <td>${data.Name}</td>
+                                <td>${data.RangerId}</td>
+                                <td>${data.Email}</td>
+                                <td>${data.Location}</td>
+                                <td>${data.Task}</td>
+                            </tr>`;
+            tbodyTasks.insertAdjacentHTML('beforeend', newRow);
+        });
+    }
+
+    // Function to add rangers to the table
+    async function AddRangersToTable() {
+        const querySnapshot = await getDocs(collection(db, "rangers"));
+        const tbodyRangers = document.getElementById('tbody_rangers');
+
+        let id = 0;
+        tbodyRangers.innerHTML = "";
+        querySnapshot.forEach(doc => {
+            const data = doc.data();
+            id++;
+            const newRow = `<tr>
+                                <td>${id}</td>
+                                <td>${data.rid}</td>
+                                <td>${data.name}</td>
+                                <td>${data.no}</td>
+                                <td>${data.contactNo}</td>
+                                <td>${data.address}</td>
+                            </tr>`;
+            tbodyRangers.insertAdjacentHTML('beforeend', newRow);
+        });
+    }
+
+    // Function to fetch data for both tasks and rangers tables
+    async function GetAllDataOnce() {
+        await AddTasksToTable();
+        await AddRangersToTable();
+    }
+
+    window.onload = GetAllDataOnce;
+
+    //End
+
+
+    /* read single data
+    getData.addEventListener('click', (e) => {
+
+        //get all data
+        getDocs(collection(db, "rangers")).then(docSnap =>{
+            let rangers = [];
+            docSnap.forEach((doc) => {
+                rangers.push({ ...doc.data(), id: doc.id })
+            });
+                console.log("Document data:", rangers);
+        });
+    });
+    */
+
+    /* read data
+    getData.addEventListener('click', (e) => {
+
+        const q = query(collection(db, "rangers"));
+
+        getDocs(q).then(docSnap => {
+            let rangers = [];
+            docSnap.forEach((doc) => {
+                rangers.push({ ...doc.data(), id: doc.id })
+            });
+            console.log("Document data:", rangers);
+
+        });
+
+    });
+    */
 
 
     /* listen for realtime updates
@@ -866,12 +999,70 @@
         }
     */
 
+    /* // This code only works when there is only one table
+        // if two tables are retrieving data at the same time it will only display one table
 
+    // retrieve data of tasks
+    var rid = 0;
+    var tbody = document.getElementById('tbody2');
+
+    function AddItemToTable(Name, RangerId, Email, Location, Task) {
+        let trow = document.createElement("tr");
+        let td1 = document.createElement('td');
+        let td2 = document.createElement('td');
+        let td3 = document.createElement('td');
+        let td4 = document.createElement('td');
+        let td5 = document.createElement('td');
+        let td6 = document.createElement('td');
+
+        td1.innerHTML = ++rid;
+        td2.innerHTML = Name;
+        td3.innerHTML = RangerId;
+        td4.innerHTML = Email;
+        td5.innerHTML = Location;
+        td6.innerHTML = Task;
+
+        trow.appendChild(td1);
+        trow.appendChild(td2);
+        trow.appendChild(td3);
+        trow.appendChild(td4);
+        trow.appendChild(td5);
+        trow.appendChild(td6);
+
+        tbody.appendChild(trow);
+    }
+
+    function AddAllItemsToTable(TheRangerTasks) {
+        rid = 0;
+        tbody.innerHTML = "";
+        TheRangerTasks.forEach(element => {
+            AddItemToTable(element.Name, element.RangerId, element.Email, element.Location, element.Task);
+        });
+    }
+
+
+
+    async function GetAllDataOnce() {
+        const querySnapshot = await getDocs(collection(db, "RangerTasks"));
+
+        var RangerTasks = [];
+
+        querySnapshot.forEach(doc => {
+            RangerTasks.push(doc.data());
+        });
+
+        AddAllItemsToTable(RangerTasks);
+    }
+
+    window.onload = GetAllDataOnce;
+
+
+    // retrieve data of rangers
 
     var id = 0;
-    var tbody = document.getElementById('tbody1');
+    var tbodyRangers = document.getElementById('tbody1');
 
-    function AddItemToTable(rid, name, no, contactNo, address) {
+    function AddItemToTableRangers(rid, name, no, contactNo, address) {
         let trow = document.createElement("tr");
         let td1 = document.createElement('td');
         let td2 = document.createElement('td');
@@ -894,20 +1085,20 @@
         trow.appendChild(td5);
         trow.appendChild(td6);
 
-        tbody.appendChild(trow);
+        tbodyRangers.appendChild(trow);
     }
 
-    function AddAllItemsToTable(TheRangers) {
+    function AddAllItemsToTableRangers(TheRangers) {
         id = 0;
-        tbody.innerHTML = "";
+        tbodyRangers.innerHTML = "";
         TheRangers.forEach(element => {
-            AddItemToTable(element.rid, element.name, element.no, element.contactNo, element.address);
+            AddItemToTableRangers(element.rid, element.name, element.no, element.contactNo, element.address);
         });
     }
 
 
 
-    async function GetAllDataOnce() {
+    async function GetAllDataRangers() {
         const querySnapshot = await getDocs(collection(db, "rangers"));
 
         var rangers = [];
@@ -916,10 +1107,12 @@
             rangers.push(doc.data());
         });
 
-        AddAllItemsToTable(rangers);
+        AddAllItemsToTableRangers(rangers);
     }
 
-    window.onload = GetAllDataOnce;
+    window.onload = GetAllDataRangers;
+
+    */
 
 
 
