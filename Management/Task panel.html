@@ -16,8 +16,10 @@
     <link rel="stylesheet" type="text/css" href="assets/libs/jquery-minicolors/jquery.minicolors.css">
     <link rel="stylesheet" type="text/css"
         href="assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/libs/quill/dist/quill.snow.css">
     <link href="dist/css/style.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="assets/extra-libs/multicheck/multicheck.css">
+    <link href="assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
 
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -313,17 +315,7 @@
                                             </tr>
                                         </thead>
                                         <tbody id="tbody_tasks"></tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Name</th>
-                                                <th>Ranger ID</th>
-                                                <th>Email</th>
-                                                <th>Location</th>
-                                                <th>Task</th>
-                                            </tr>
-                                        </tfoot>
-
+                                        
                                     </table>
                                 </div>
 
@@ -338,52 +330,75 @@
                                 <h4 class="card-title m-b-0">Progress Box</h4>
                                 <div class="m-t-20">
                                     <div class="d-flex no-block align-items-center">
-                                        <span>81% Clicks</span>
+                                        <span>Rangers</span>
                                         <div class="ml-auto">
-                                            <span>12</span>
+                                            <span id="clicksCount">Change</span>
+                                            <button onclick="increaseWidth('clicks')"
+                                                class="btn btn-sm btn-success">+</button>
+                                            <button onclick="decreaseWidth('clicks')"
+                                                class="btn btn-sm btn-danger">-</button>
                                         </div>
                                     </div>
                                     <div class="progress">
-                                        <div class="progress-bar progress-bar-striped" role="progressbar"
-                                            style="width: 81%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
+                                        <div id="clicksProgress" class="progress-bar progress-bar-striped"
+                                            role="progressbar" style="width: 81%" aria-valuenow="10" aria-valuemin="0"
+                                            aria-valuemax="100">
                                         </div>
                                     </div>
                                 </div>
-                                <div>
-                                    <div class="d-flex no-block align-items-center m-t-25">
-                                        <span>72% Uniquie Clicks</span>
+
+                                <div class="m-t-20">
+                                    <div class="d-flex no-block align-items-center">
+                                        <span>Rangers On Duty</span>
                                         <div class="ml-auto">
-                                            <span>120</span>
+                                            <span id="uniqueClicksCount">Change</span>
+                                            <button onclick="increaseWidth('uniqueClicks')"
+                                                class="btn btn-sm btn-success">+</button>
+                                            <button onclick="decreaseWidth('uniqueClicks')"
+                                                class="btn btn-sm btn-danger">-</button>
                                         </div>
                                     </div>
                                     <div class="progress">
-                                        <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                                        <div id="uniqueClicksProgress"
+                                            class="progress-bar progress-bar-striped bg-success" role="progressbar"
                                             style="width: 72%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
                                         </div>
                                     </div>
                                 </div>
-                                <div>
-                                    <div class="d-flex no-block align-items-center m-t-25">
-                                        <span>53% Impressions</span>
+
+                                <div class="m-t-20">
+                                    <div class="d-flex no-block align-items-center">
+                                        <span>Online Tickets</span>
                                         <div class="ml-auto">
-                                            <span>785</span>
+                                            <span id="impressionsCount">Change</span>
+                                            <button onclick="increaseWidth('impressions')"
+                                                class="btn btn-sm btn-success">+</button>
+                                            <button onclick="decreaseWidth('impressions')"
+                                                class="btn btn-sm btn-danger">-</button>
                                         </div>
                                     </div>
                                     <div class="progress">
-                                        <div class="progress-bar progress-bar-striped bg-info" role="progressbar"
-                                            style="width: 53%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                        <div id="impressionsProgress" class="progress-bar progress-bar-striped bg-info"
+                                            role="progressbar" style="width: 53%" aria-valuenow="50" aria-valuemin="0"
+                                            aria-valuemax="100">
                                         </div>
                                     </div>
                                 </div>
-                                <div>
-                                    <div class="d-flex no-block align-items-center m-t-25">
-                                        <span>3% Online Users</span>
+
+                                <div class="m-t-20">
+                                    <div class="d-flex no-block align-items-center">
+                                        <span>Online Tickets</span>
                                         <div class="ml-auto">
-                                            <span>8</span>
+                                            <span id="onlineUsersCount">Change</span>
+                                            <button onclick="increaseWidth('onlineUsers')"
+                                                class="btn btn-sm btn-success">+</button>
+                                            <button onclick="decreaseWidth('onlineUsers')"
+                                                class="btn btn-sm btn-danger">-</button>
                                         </div>
                                     </div>
                                     <div class="progress">
-                                        <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"
+                                        <div id="onlineUsersProgress"
+                                            class="progress-bar progress-bar-striped bg-danger" role="progressbar"
                                             style="width: 3%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
                                         </div>
                                     </div>
@@ -469,16 +484,7 @@
                                             </tr>
                                         </thead>
                                         <tbody id="tbody_rangers"></tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Ranger ID</th>
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Contact No</th>
-                                                <th>Address</th>
-                                            </tr>
-                                        </tfoot>
+
 
                                     </table>
                                 </div>
@@ -682,6 +688,35 @@
         });
 
     </script>
+
+
+
+
+    <script>
+        function increaseWidth(progressType) {
+            var progressBar = document.getElementById(progressType + 'Progress');
+            var progressCount = document.getElementById(progressType + 'Count');
+            var currentWidth = parseInt(progressBar.style.width);
+            if (currentWidth < 100) {
+                currentWidth += 1;
+                progressBar.style.width = currentWidth + '%';
+                progressCount.textContent = Math.round(currentWidth);
+            }
+        }
+
+        function decreaseWidth(progressType) {
+            var progressBar = document.getElementById(progressType + 'Progress');
+            var progressCount = document.getElementById(progressType + 'Count');
+            var currentWidth = parseInt(progressBar.style.width);
+            if (currentWidth > 0) {
+                currentWidth -= 1;
+                progressBar.style.width = currentWidth + '%';
+                progressCount.textContent = Math.round(currentWidth);
+            }
+        }
+    </script>
+
+
 </body>
 
 
@@ -739,7 +774,7 @@
         var email = document.getElementById('email').value;
         var message = document.getElementById('msg').value;
 
-        updateDoc(doc(db, "rangers", '0ieQTuBBPc4MhEgxw3Ea'), {
+        updateDoc(doc(db, "rangers"), {
             name: name,
             rid: rangerID,
             contactNo: contactNo,
@@ -750,6 +785,7 @@
         alert("Ranger Updated!");
 
     });
+
 
 
     deleteData.addEventListener('click', (e) => {
@@ -1059,7 +1095,7 @@
 
     // retrieve data of rangers
 
-    var id = 0;
+    var id = 0; 
     var tbodyRangers = document.getElementById('tbody1');
 
     function AddItemToTableRangers(rid, name, no, contactNo, address) {
