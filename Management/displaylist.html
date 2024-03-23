@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div>
+        <ul id="list"></ul>
+    </div>
+
+</body>
+
+<script type="module">
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyBm9ryFrZMedJ6p14RDxXD67boIOElE_-U",
+        authDomain: "hpms-85ed2.firebaseapp.com",
+        databaseURL: "https://hpms-85ed2-default-rtdb.firebaseio.com",
+        projectId: "hpms-85ed2",
+        storageBucket: "hpms-85ed2.appspot.com",
+        messagingSenderId: "1000800775577",
+        appId: "1:1000800775577:web:0f1a641e843ea088bc3708"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    // Initialize Cloud Firestore and get a reference to the service
+    const db = getFirestore(app);
+
+    const list = document.getElementById('list');
+
+    async function GetAllDataOnce() {
+        const querySnapshot = await getDocs(collection(db, "VisitorQuery"));
+
+        querySnapshot.forEach(doc => {
+            const data = doc.data();
+            const listItem = document.createElement('li');
+            listItem.textContent = `Name: ${data.Name}, Email: ${data.Email}, Subject: ${data.Subject}, Message: ${data.Message}`;
+            list.appendChild(listItem);
+        });
+    }
+
+    window.onload = GetAllDataOnce;
+
+</script>
+
+</html>

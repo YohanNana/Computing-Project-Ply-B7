@@ -207,7 +207,7 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Ranger Register</h4>
+                        <h4 class="page-title">Ranger Activities</h4>
                         <div class="ml-auto text-right">
 
                         </div>
@@ -228,7 +228,7 @@
                         <div class="card">
                             <form class="form-horizontal">
                                 <div class="card-body">
-                                    <h4 class="card-title">Ranger Info</h4>
+                                    <h4 class="card-title">Ranger Register</h4>
                                     <div class="form-group row">
                                         <label for="fname"
                                             class="col-sm-3 text-right control-label col-form-label">Name</label>
@@ -262,20 +262,86 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="msg"
-                                            class="col-sm-3 text-right control-label col-form-label">Message</label>
+                                        <label for="address "
+                                            class="col-sm-3 text-right control-label col-form-label">Address</label>
                                         <div class="col-sm-9">
-                                            <textarea class="form-control" id="msg"
-                                                placeholder="Message Here"></textarea>
+                                            <input type="text" class="form-control" id="address"
+                                                placeholder="Home Address Here">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="border-top">
                                     <div class="card-body">
+                                        <button onclick="sendConfirmationEmail('your-ticket-id')">Send Confirmation Email</button>
                                         <button type="button" id="submitData" class="btn btn-primary">Submit</button>
                                         <button type="button" id="updateData" class="btn btn-success">Update</button>
                                         <button type="button" id="deleteData" class="btn btn-danger">Delete</button>
                                         <button type="button" id="getData" class="btn btn-warning">Get Data</button>
+                                        <button type="reset" class="btn btn-secondary">Reset</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+
+
+                        <div class="card">
+                            <form class="form-horizontal">
+                                <div class="card-body">
+                                    <h4 class="card-title">Assign Task For Rangers</h4>
+                                    <div class="form-group row">
+                                        <label for="fname"
+                                            class="col-sm-3 text-right control-label col-form-label">Name</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="name" placeholder="Name Here">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="rid" class="col-sm-3 text-right control-label col-form-label">Ranger
+                                            ID</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="rid"
+                                                placeholder="Ranger ID Here" class="required form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="email"
+                                            class="col-sm-3 text-right control-label col-form-label">Email
+                                            Address</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="email"
+                                                placeholder="Email Address Here">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="loc"
+                                            class="col-sm-3 text-right control-label col-form-label">Location</label>
+                                        <div class="col-sm-9">
+                                            <select class="select2 form-control custom-select"
+                                                style="width: 100%; height:36px;">
+                                                <option>Select Location</option>
+
+                                                <option value="WET">World's End Trail</option>
+                                                <option value="UT">Udaweriya Trail</option>
+                                                <option value="DT">Dayagama Trail</option>
+                                                <option value="BT">Bogawanthalawa Trail</option>
+                                                <option value="TMT">Thotupola Mountain Trail</option>
+                                                <option value="KM">Kirigalpoththa Mountain</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="task"
+                                            class="col-sm-3 text-right control-label col-form-label">Task</label>
+                                        <div class="col-sm-9">
+                                            <textarea class="form-control" id="task"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border-top">
+                                    <div class="card-body">
+                                        <button type="button" id="submitsData" class="btn btn-primary">Submit</button>
                                         <button type="reset" class="btn btn-secondary">Reset</button>
                                     </div>
                                 </div>
@@ -568,14 +634,14 @@
         var rangerID = document.getElementById('rid').value;
         var contactNo = document.getElementById('no').value;
         var email = document.getElementById('email').value;
-        var message = document.getElementById('msg').value;
+        var address = document.getElementById('address').value;
 
         addDoc(collection(db, "rangers"), {
             name: name,
             rid: rangerID,
             contactNo: contactNo,
-            no: email,
-            msg: message
+            email: email,
+            address: address
         });
 
         alert("Ranger Added!");
@@ -595,7 +661,7 @@
             name: name,
             rid: rangerID,
             contactNo: contactNo,
-            no: email,
+            email: email,
             msg: message
         });
 

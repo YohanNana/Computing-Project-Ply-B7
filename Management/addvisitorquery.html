@@ -36,11 +36,10 @@
         <table>
             <thead>
                 <th>No</th>
-                <th>Ranger ID</th>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Contact No</th>
-                <th>Address</th>
+                <th>Subject</th>
+                <th>Message</th>
             </thead>
             <tbody id="tbody1"></tbody>
         </table>
@@ -73,7 +72,7 @@
     var id = 0;
     var tbody = document.getElementById('tbody1');
 
-    function AddItemToTable(rid, name, no, contactNo, address) {
+    function AddItemToTable(Name, Email, Subject, Message) {
         let trow = document.createElement("tr");
         let td1 = document.createElement('td');
         let td2 = document.createElement('td');
@@ -83,42 +82,40 @@
         let td6 = document.createElement('td');
 
         td1.innerHTML = ++id;
-        td2.innerHTML = rid;
-        td3.innerHTML = name;
-        td4.innerHTML = no;
-        td5.innerHTML = contactNo;
-        td6.innerHTML = address;
+        td2.innerHTML = Name;
+        td3.innerHTML = Email;
+        td4.innerHTML = Subject;
+        td5.innerHTML = Message;
 
         trow.appendChild(td1);
         trow.appendChild(td2);
         trow.appendChild(td3);
         trow.appendChild(td4);
         trow.appendChild(td5);
-        trow.appendChild(td6);
 
         tbody.appendChild(trow);
     }
 
-    function AddAllItemsToTable(TheRangers) {
+    function AddAllItemsToTable(TheVisitorQuery) {
         id = 0;
         tbody.innerHTML = "";
-        TheRangers.forEach(element => {
-            AddItemToTable(element.rid, element.name, element.no, element.contactNo, element.address);
+        TheVisitorQuery.forEach(element => {
+            AddItemToTable(element.Name, element.Email, element.Subject, element.Message);
         });
     }
 
 
 
     async function GetAllDataOnce() {
-        const querySnapshot = await getDocs(collection(db, "rangers"));
+        const querySnapshot = await getDocs(collection(db, "VisitorQuery"));
 
-        var rangers = [];
+        var VisitorQuery = [];
 
         querySnapshot.forEach(doc => {
-            rangers.push(doc.data());
+            VisitorQuery.push(doc.data());
         });
 
-        AddAllItemsToTable(rangers);
+        AddAllItemsToTable(VisitorQuery);
     }
 
     window.onload = GetAllDataOnce;

@@ -132,7 +132,7 @@
           </div>
           <a href="contact.html" class="nav-item nav-link active">Contact</a>
         </div>
-        <a href="" class="btn btn-primary"
+        <a href="BuyTickets.html" class="btn btn-primary"
           >Buy Ticket<i class="fa fa-arrow-right ms-3"></i
         ></a>
       </div>
@@ -220,50 +220,31 @@
               <div class="row g-3">
                 <div class="col-md-6">
                   <div class="form-floating">
-                    <input
-                      type="text"
-                      class="form-control bg-light border-0"
-                      id="name"
-                      placeholder="Your Name"
-                    />
+                    <input type="text" class="form-control bg-light border-0" id="name" placeholder="Your Name" />
                     <label for="name">Your Name</label>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-floating">
-                    <input
-                      type="email"
-                      class="form-control bg-light border-0"
-                      id="email"
-                      placeholder="Your Email"
-                    />
+                    <input type="email" class="form-control bg-light border-0" id="email" placeholder="Your Email" />
                     <label for="email">Your Email</label>
                   </div>
                 </div>
                 <div class="col-12">
                   <div class="form-floating">
-                    <input
-                      type="text"
-                      class="form-control bg-light border-0"
-                      id="subject"
-                      placeholder="Subject"
-                    />
+                    <input type="text" class="form-control bg-light border-0" id="subject" placeholder="Subject" />
                     <label for="subject">Subject</label>
                   </div>
                 </div>
                 <div class="col-12">
                   <div class="form-floating">
-                    <textarea
-                      class="form-control bg-light border-0"
-                      placeholder="Leave a message here"
-                      id="message"
-                      style="height: 100px"
-                    ></textarea>
+                    <textarea class="form-control bg-light border-0" placeholder="Leave a message here" id="message"
+                      style="height: 100px"></textarea>
                     <label for="message">Message</label>
                   </div>
                 </div>
                 <div class="col-12">
-                  <button class="btn btn-primary w-100 py-3" type="submit">
+                  <button class="btn btn-primary w-100 py-3" id="sendMsg" type="submit">
                     Send Message
                   </button>
                 </div>
@@ -393,4 +374,49 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
   </body>
+
+
+  <script type="module">
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+    import { getFirestore, setDoc, addDoc, doc, collection } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+  
+  
+    const firebaseConfig = {
+      apiKey: "AIzaSyBm9ryFrZMedJ6p14RDxXD67boIOElE_-U",
+      authDomain: "hpms-85ed2.firebaseapp.com",
+      databaseURL: "https://hpms-85ed2-default-rtdb.firebaseio.com",
+      projectId: "hpms-85ed2",
+      storageBucket: "hpms-85ed2.appspot.com",
+      messagingSenderId: "1000800775577",
+      appId: "1:1000800775577:web:0f1a641e843ea088bc3708"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    // Initialize Cloud Firestore and get a reference to the service
+    const db = getFirestore(app);
+  
+  
+    sendMsg.addEventListener('click', (e) => {
+      e.preventDefault();
+  
+      var name = document.getElementById('name').value;
+      var email = document.getElementById('email').value;
+      var subject = document.getElementById('subject').value;
+      var message = document.getElementById('message').value;
+  
+      addDoc(collection(db, "VisitorQuery"), {
+        Name: name,
+        Email: email,
+        Subject: subject,
+        Message: message
+      });
+  
+      alert("Message Sent");
+  
+    });
+  </script>
+
+
 </html>
