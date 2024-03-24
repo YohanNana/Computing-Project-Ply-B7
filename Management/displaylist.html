@@ -1,55 +1,130 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-
-    <div>
-        <ul id="list"></ul>
-    </div>
-
-</body>
-
-<script type="module">
-
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
-
-    const firebaseConfig = {
-        apiKey: "AIzaSyBm9ryFrZMedJ6p14RDxXD67boIOElE_-U",
-        authDomain: "hpms-85ed2.firebaseapp.com",
-        databaseURL: "https://hpms-85ed2-default-rtdb.firebaseio.com",
-        projectId: "hpms-85ed2",
-        storageBucket: "hpms-85ed2.appspot.com",
-        messagingSenderId: "1000800775577",
-        appId: "1:1000800775577:web:0f1a641e843ea088bc3708"
-    };
-
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    // Initialize Cloud Firestore and get a reference to the service
-    const db = getFirestore(app);
-
-    const list = document.getElementById('list');
-
-    async function GetAllDataOnce() {
-        const querySnapshot = await getDocs(collection(db, "VisitorQuery"));
-
-        querySnapshot.forEach(doc => {
-            const data = doc.data();
-            const listItem = document.createElement('li');
-            listItem.textContent = `Name: ${data.Name}, Email: ${data.Email}, Subject: ${data.Subject}, Message: ${data.Message}`;
-            list.appendChild(listItem);
-        });
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rangers Data Table</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
     }
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <h2>Rangers Data</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <!-- Add more table headers as needed -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>John</td>
+        <td>25</td>
+        <!-- Add more table cells based on your data -->
+      </tr>
+      <tr>
+        <td>Jane</td>
+        <td>30</td>
+        <!-- Add more table cells based on your data -->
+      </tr>
+      <!-- Add more rows as needed -->
+    </tbody>
+  </table>
+</body>
+</html>
+<body>
+    <canvas id="revenueChart" width="800" height="400"></canvas>
 
-    window.onload = GetAllDataOnce;
+    <script type="module">
 
-</script>
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+        import { getFirestore, setDoc, addDoc, doc, collection, updateDoc, deleteDoc, query, where, getDoc, getDocs, onSnapshot } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
 
+        const firebaseConfig = {
+            apiKey: "AIzaSyBm9ryFrZMedJ6p14RDxXD67boIOElE_-U",
+            authDomain: "hpms-85ed2.firebaseapp.com",
+            databaseURL: "https://hpms-85ed2-default-rtdb.firebaseio.com",
+            projectId: "hpms-85ed2",
+            storageBucket: "hpms-85ed2.appspot.com",
+            messagingSenderId: "1000800775577",
+            appId: "1:1000800775577:web:0f1a641e843ea088bc3708"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        // Initialize Cloud Firestore and get a reference to the service
+        const db = getFirestore(app);
+
+        // Function to calculate revenue
+        function calculateRevenue(visitor) {
+            if (visitor.Country.toLowerCase() === 'sri lanka') {
+                return visitor.Quantity * 500;
+            } else {
+                return visitor.Quantity * 13000; // Assuming ticket price is in USD
+            }
+        }
+
+        // Function to get data from Firestore and plot the graph
+        async function plotRevenueGraph() {
+            const querySnapshot = await getDocs(collection(db, "Visitors"));
+
+            const revenueData = {};
+
+            querySnapshot.forEach(doc => {
+                const visitor = doc.data();
+                const date = visitor.Date.toDate().toLocaleDateString(); // Assuming there's a Date field in Firestore
+                const revenue = calculateRevenue(visitor);
+
+                if (revenueData[date]) {
+                    revenueData[date] += revenue;
+                } else {
+                    revenueData[date] = revenue;
+                }
+            });
+
+            const labels = Object.keys(revenueData);
+            const data = Object.values(revenueData);
+
+            // Plotting the graph using Chart.js
+            const ctx = document.getElementById('revenueChart').getContext('2d');
+            const revenueChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Revenue',
+                        data: data,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+
+        window.onload = plotRevenueGraph;
+
+    </script>
+</body>
 </html>

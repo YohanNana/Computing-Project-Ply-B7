@@ -54,7 +54,7 @@
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="main.html">
                         <!-- Logo icon -->
                         <b class="logo-icon p-l-10">
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -70,11 +70,6 @@
                             <img src="assets/images/logo-text.png" alt="homepage" class="light-logo" />
 
                         </span>
-                        <!-- Logo icon -->
-                        <!-- <b class="logo-icon"> -->
-                        <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                        <!-- Dark Logo icon -->
-                        <!-- <img src="assets/images/logo-text.png" alt="homepage" class="light-logo" /> -->
 
                         <!-- </b> -->
                         <!--End Logo icon -->
@@ -121,16 +116,13 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
                                     src="assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i>
-                                    My Profile</a>
+
 
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="authentication-login.html"><i
                                         class="fa fa-power-off m-r-5 m-l-5" id="logoutBtn"></i> Logout</a>
                                 <div class="dropdown-divider"></div>
-                                <div class="p-l-30 p-10"><a href="javascript:void(0)"
-                                        class="btn btn-sm btn-success btn-rounded">View Profile</a></div>
-                            </div>
+
                         </li>
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
@@ -165,7 +157,7 @@
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="wildlife_monitor.html" aria-expanded="false"><i
                                     class="mdi mdi-border-inside"></i><span class="hide-menu">Wildlife
-                                    Monitoring</span></a></li>
+                                    Information</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="finance.html" aria-expanded="false"><i class="mdi mdi-blur-linear"></i><span
                                     class="hide-menu">Financial Overview</span></a></li>
@@ -209,7 +201,7 @@
                 <!-- Sales Cards  -->
                 <!-- ============================================================== -->
                 <div class="row">
-                    <div class="col-md-6 col-lg-4 col-xlg-3">
+                    <div class="col-md-6 col-lg-6 col-xlg-3">
                         <div class="card card-hover">
                             <div class="box bg-cyan text-center">
                                 <h1 class="font-light text-white"><i class="mdi mdi-receipt"></i></h1>
@@ -218,7 +210,7 @@
                         </div>
                     </div>
                     <!-- Column -->
-                    <div class="col-md-6 col-lg-4    col-xlg-3">
+                    <div class="col-md-6 col-lg-6    col-xlg-3">
                         <div class="card card-hover">
                             <div class="box bg-warning text-center">
                                 <h1 class="font-light text-white"><i class="fa fa-user m-b-5 font-16"></i></h1>
@@ -227,14 +219,7 @@
                         </div>
                     </div>
                     <!-- Column -->
-                    <div class="col-md-6 col-lg-4 col-xlg-3">
-                        <div class="card card-hover">
-                            <div class="box bg-success text-center">
-                                <h1 class="font-light text-white"><i class="mdi mdi-chart-areaspline"></i></h1>
-                                <h6 class="text-white">Charts</h6>
-                            </div>
-                        </div>
-                    </div>
+
                     <!-- Column -->
                     <div class="col-md-6 col-lg-4 col-xlg-3">
                         <div class="card card-hover">
@@ -275,8 +260,7 @@
                             <div class="card-body">
                                 <div class="d-md-flex align-items-center">
                                     <div>
-                                        <h4 class="card-title">National Park Analysis</h4>
-                                        <h5 class="card-subtitle">Overview of Latest Month</h5>
+                                        <h4 class="card-title">National Park Analysis</h4><br>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -284,13 +268,16 @@
 
                                     <div class="col-lg-12">
                                         <div class="row">
+
                                             <div class="col-6">
                                                 <div class="bg-dark p-10 text-white text-center">
                                                     <i class="fa fa-user m-b-5 font-16"></i>
-                                                    <h5 class="m-b-0 m-t-5">2540</h5>
+                                                    <h5 id="totalVisitors" class="m-b-0 m-t-5">980</h5>
                                                     <small class="font-light">Total Visitors Visited</small>
+
                                                 </div>
                                             </div>
+
                                             <div class="col-6">
                                                 <div class="bg-dark p-10 text-white text-center">
                                                     <i class="fa fa-plus m-b-5 font-16"></i>
@@ -298,31 +285,32 @@
                                                     <small class="font-light">Today Visitors</small>
                                                 </div>
                                             </div>
+
                                             <div class="col-6 m-t-15">
                                                 <div class="bg-dark p-10 text-white text-center">
                                                     <i class="fa fa-user m-b-5 font-16"></i>
-                                                    <h5 class="m-b-0 m-t-5">124</h5>
+                                                    <h5 class="m-b-0 m-t-5">41</h5>
                                                     <small class="font-light">Total Rangers</small>
                                                 </div>
                                             </div>
                                             <div class="col-6 m-t-15">
                                                 <div class="bg-dark p-10 text-white text-center">
                                                     <i class="fa fa-user m-b-5 font-16"></i>
-                                                    <h5 class="m-b-0 m-t-5">48</h5>
+                                                    <h5 class="m-b-0 m-t-5">11</h5>
                                                     <small class="font-light">Rangers On-Duty</small>
                                                 </div>
                                             </div>
                                             <div class="col-6 m-t-15">
                                                 <div class="bg-dark p-10 text-white text-center">
                                                     <i class="fa fa-globe m-b-5 font-16"></i>
-                                                    <h5 class="m-b-0 m-t-5">69</h5>
+                                                    <h5 class="m-b-0 m-t-5">22</h5>
                                                     <small class="font-light">Online Tickets</small>
                                                 </div>
                                             </div>
                                             <div class="col-6 m-t-15">
                                                 <div class="bg-dark p-10 text-white text-center">
                                                     <i class="fa fa-globe m-b-5 font-16"></i>
-                                                    <h5 class="m-b-0 m-t-5">69</h5>
+                                                    <h5 class="m-b-0 m-t-5">42</h5>
                                                     <small class="font-light">Insite Tickets</small>
                                                 </div>
                                             </div>
@@ -363,12 +351,13 @@
                                                                 Humidity Day
                                                             </div>
                                                             <div class="calendar-events m-b-20" data-class="bg-success">
-                                                                <i class="fa fa-circle text-success m-r-10"></i> Sunny
+                                                                <i class="fa fa-circle text-success m-r-10"></i>
+                                                                Pleasent
                                                                 Weather
                                                             </div>
                                                             <div class="calendar-events m-b-20" data-class="bg-danger">
                                                                 <i class="fa fa-circle text-danger m-r-10"></i> Closed
-                                                                date
+                                                                Date
                                                             </div>
                                                             <div class="calendar-events m-b-20" data-class="bg-warning">
                                                                 <i class="fa fa-circle text-warning m-r-10"></i> Park
@@ -475,35 +464,6 @@
 
 
 
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Notification</h5>
-                                <div class="row">
-                                    <div class="col-md-3 col-sm-12">
-                                        <button type="button" class="btn btn-lg btn-block btn-outline-success"
-                                            id="ts-success">Success</button>
-                                    </div>
-                                    <div class="col-md-3 col-sm-12">
-                                        <button type="button" class="btn btn-lg btn-block btn-outline-info"
-                                            id="ts-info">Info</button>
-                                    </div>
-                                    <div class="col-md-3 col-sm-12">
-                                        <button type="button" class="btn btn-lg btn-block btn-outline-warning"
-                                            id="ts-warning">Warning</button>
-                                    </div>
-                                    <div class="col-md-3 col-sm-12">
-                                        <button type="button" class="btn btn-lg btn-block btn-outline-danger"
-                                            id="ts-error">Error</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
 
                 <!-- ============================================================== -->
                 <!-- Alert Cards  -->
@@ -513,36 +473,14 @@
                     <div class="card-body">
                         <h5 class="card-title">Emergency Alerts!</h5>
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-success margin-5" data-toggle="modal"
-                            data-target="#Modal1">
-                            Weather Alerts
-                        </button>
-                        <!-- Button trigger modal -->
+
                         <button type="button" class="btn btn-warning margin-5 text-white" data-toggle="modal"
                             data-target="#Modal2">
-                            Animal Alert
+                            Emergency Alert
                         </button>
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-info margin-5" data-toggle="modal" data-target="#Modal3">
-                            Image Popup
-                        </button>
+
                         <!-- Modal -->
-                        <div class="modal fade" id="Modal1" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true ">
-                            <div class="modal-dialog" role="document ">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Weather Alert</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true ">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        Todays Weather.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                         <!-- Modal -->
                         <div class="modal fade" id="Modal2" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -555,12 +493,12 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        What kind of animal was there?
+                                        Are you sure to send an Alert?
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                        <button type="button" class="btn btn-primary">Send Alert</button>
                                     </div>
                                 </div>
                             </div>
@@ -596,16 +534,24 @@
 
             </div>
 
+
+            <footer class="footer text-center">
+                All Rights Reserved by Group B7 (University of Plymouth Group Project). Designed & Developed by Group
+                B7.
+            </footer>
+
+
         </div>
-
-
-
 
 
     </div>
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->
+
+
+
+
 
     <!-- ============================================================== -->
     <!-- All Jquery -->
@@ -669,6 +615,25 @@
                 toastr.error('I do not think that word means what you think it means.', 'Inconceivable!');
             });
         });
+    </script>
+
+
+    <script>
+        function increaseVisitor() {
+            var inputField = document.getElementById("visitorInput");
+            var currentValue = parseInt(inputField.value);
+            inputField.value = currentValue + 1;
+            document.getElementById("totalVisitors").textContent = inputField.value;
+        }
+
+        function decreaseVisitor() {
+            var inputField = document.getElementById("visitorInput");
+            var currentValue = parseInt(inputField.value);
+            if (currentValue > 0) {
+                inputField.value = currentValue - 1;
+                document.getElementById("totalVisitors").textContent = inputField.value;
+            }
+        }
     </script>
 
 
