@@ -252,6 +252,8 @@
                         <div class="ml-auto text-right">
 
 
+
+
                         </div>
                     </div>
                 </div>
@@ -260,54 +262,177 @@
             <!-- End Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
 
+            <!-- Container fluid  -->
+
+            <div class="container-fluid">
+
+                <!-- Start Page Content -->
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Visitor Revenue</h5>
+                                <div class="table-responsive">
+                                    <table id="zero_config" class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>Email</th>
+                                                <th>Country</th>
+                                                <th>Quantity</th>
+                                                <th>Total Revenue (LKR)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbody2"></tbody>
+
+
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
-
-    </div>
-    <!-- ============================================================== -->
-    <!-- End Wrapper -->
-    <!-- ============================================================== -->
-
-    <!-- ============================================================== -->
-    <!-- All Jquery -->
-    <!-- ============================================================== -->
-    <script src="assets/libs/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap tether Core JavaScript -->
-    <script src="assets/libs/popper.js/dist/umd/popper.min.js"></script>
-    <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-    <script src="assets/extra-libs/sparkline/sparkline.js"></script>
-    <!--Wave Effects -->
-    <script src="dist/js/waves.js"></script>
-    <!--Menu sidebar -->
-    <script src="dist/js/sidebarmenu.js"></script>
-    <!--Custom JavaScript -->
-    <script src="dist/js/custom.min.js"></script>
-    <!--This page JavaScript -->
-    <!-- <script src="dist/js/pages/dashboards/dashboard1.js"></script> -->
-    <!-- Charts js Files -->
-    <script src="assets/libs/flot/excanvas.js"></script>
-    <script src="assets/libs/flot/jquery.flot.js"></script>
-    <script src="assets/libs/flot/jquery.flot.pie.js"></script>
-    <script src="assets/libs/flot/jquery.flot.time.js"></script>
-    <script src="assets/libs/flot/jquery.flot.stack.js"></script>
-    <script src="assets/libs/flot/jquery.flot.crosshair.js"></script>
-    <script src="assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
-    <script src="dist/js/pages/chart/chart-page-init.js"></script>
+        <!-- ============================================================== -->
+        <!-- End Wrapper -->
+        <!-- ============================================================== -->
 
 
-    <!-- ============================================================== -->
-    <!-- All Jquery -->
-    <!-- ============================================================== -->
-    <script src="dist/js/jquery.ui.touch-punch-improved.js"></script>
-    <script src="dist/js/jquery-ui.min.js"></script>
-    <!-- this page js -->
-    <script src="assets/libs/moment/min/moment.min.js"></script>
-    <script src="assets/libs/fullcalendar/dist/fullcalendar.min.js"></script>
-    <script src="dist/js/pages/calendar/cal-init.js"></script>
 
-    <!-- this page js -->
-    <script src="assets/libs/toastr/build/toastr.min.js"></script>
+        <script type="module">
+
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+            import { getFirestore, setDoc, addDoc, doc, collection, updateDoc, deleteDoc, query, where, getDoc, getDocs, onSnapshot } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+
+
+            const firebaseConfig = {
+                apiKey: "AIzaSyBm9ryFrZMedJ6p14RDxXD67boIOElE_-U",
+                authDomain: "hpms-85ed2.firebaseapp.com",
+                databaseURL: "https://hpms-85ed2-default-rtdb.firebaseio.com",
+                projectId: "hpms-85ed2",
+                storageBucket: "hpms-85ed2.appspot.com",
+                messagingSenderId: "1000800775577",
+                appId: "1:1000800775577:web:0f1a641e843ea088bc3708"
+            };
+
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            // Initialize Cloud Firestore and get a reference to the service
+            const db = getFirestore(app);
+
+            var id = 0;
+            var tbody = document.getElementById('tbody2');
+
+            function AddItemToTable(FName, LastName, Email, Country, Quantity, TotalRevenue) {
+                let trow = document.createElement("tr");
+                let td1 = document.createElement('td');
+                let td2 = document.createElement('td');
+                let td3 = document.createElement('td');
+                let td4 = document.createElement('td');
+                let td5 = document.createElement('td');
+                let td6 = document.createElement('td');
+                let td7 = document.createElement('td');
+
+                td1.innerHTML = ++id;
+                td2.innerHTML = FName;
+                td3.innerHTML = LastName;
+                td4.innerHTML = Email;
+                td5.innerHTML = Country;
+                td6.innerHTML = Quantity;
+                td7.innerHTML = TotalRevenue;
+
+                trow.appendChild(td1);
+                trow.appendChild(td2);
+                trow.appendChild(td3);
+                trow.appendChild(td4);
+                trow.appendChild(td5);
+                trow.appendChild(td6);
+                trow.appendChild(td7);
+
+                tbody.appendChild(trow);
+            }
+
+            async function GetAllDataOnce() {
+                const querySnapshot = await getDocs(collection(db, "Visitors"));
+
+                var Visitors = [];
+
+                querySnapshot.forEach(doc => {
+                    Visitors.push(doc.data());
+                });
+
+                AddAllItemsToTable(Visitors);
+            }
+
+            async function AddAllItemsToTable(TheVisitors) {
+                id = 0;
+                tbody.innerHTML = "";
+                for (let i = 0; i < TheVisitors.length; i++) {
+                    let visitor = TheVisitors[i];
+                    let totalRevenue = calculateRevenue(visitor);
+                    AddItemToTable(visitor.FName, visitor.LastName, visitor.Email, visitor.Country, visitor.Quantity, totalRevenue);
+                }
+            }
+
+            function calculateRevenue(visitor) {
+                if (visitor.Country.toLowerCase() === 'sri lanka') {
+                    return visitor.Quantity * 500;
+                } else {
+                    return visitor.Quantity * 13000; // Assuming ticket price is in USD
+                }
+            }
+
+            window.onload = GetAllDataOnce;
+        </script>
+
+
+
+        <!-- ============================================================== -->
+        <!-- All Jquery -->
+        <!-- ============================================================== -->
+        <script src="assets/libs/jquery/dist/jquery.min.js"></script>
+        <!-- Bootstrap tether Core JavaScript -->
+        <script src="assets/libs/popper.js/dist/umd/popper.min.js"></script>
+        <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+        <script src="assets/extra-libs/sparkline/sparkline.js"></script>
+        <!--Wave Effects -->
+        <script src="dist/js/waves.js"></script>
+        <!--Menu sidebar -->
+        <script src="dist/js/sidebarmenu.js"></script>
+        <!--Custom JavaScript -->
+        <script src="dist/js/custom.min.js"></script>
+        <!--This page JavaScript -->
+        <!-- <script src="dist/js/pages/dashboards/dashboard1.js"></script> -->
+        <!-- Charts js Files -->
+        <script src="assets/libs/flot/excanvas.js"></script>
+        <script src="assets/libs/flot/jquery.flot.js"></script>
+        <script src="assets/libs/flot/jquery.flot.pie.js"></script>
+        <script src="assets/libs/flot/jquery.flot.time.js"></script>
+        <script src="assets/libs/flot/jquery.flot.stack.js"></script>
+        <script src="assets/libs/flot/jquery.flot.crosshair.js"></script>
+        <script src="assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+        <script src="dist/js/pages/chart/chart-page-init.js"></script>
+
+
+        <!-- ============================================================== -->
+        <!-- All Jquery -->
+        <!-- ============================================================== -->
+        <script src="dist/js/jquery.ui.touch-punch-improved.js"></script>
+        <script src="dist/js/jquery-ui.min.js"></script>
+        <!-- this page js -->
+        <script src="assets/libs/moment/min/moment.min.js"></script>
+        <script src="assets/libs/fullcalendar/dist/fullcalendar.min.js"></script>
+        <script src="dist/js/pages/calendar/cal-init.js"></script>
+
+        <!-- this page js -->
+        <script src="assets/libs/toastr/build/toastr.min.js"></script>
 
 
 </body>
