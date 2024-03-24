@@ -23,15 +23,15 @@
 
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
     </script>
+
     <script type="text/javascript">
-    (function(){
-        emailjs.init({
-            publicKey: "R0I3Esl2FS3Dxnn59",
-        });
-    })();
+        (function () {
+            emailjs.init({
+                publicKey: "R0I3Esl2FS3Dxnn59",
+            });
+        })();
     </script>
 
 </head>
@@ -62,7 +62,7 @@
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="main.html">
                         <!-- Logo icon -->
                         <b class="logo-icon p-l-10">
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -116,35 +116,7 @@
                     <ul class="navbar-nav float-right">
                         <!-- ============================================================== -->
 
-                        <!-- ============================================================== -->
-                        <!-- Messages -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="2"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i
-                                    class="font-24 mdi mdi-comment-processing"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown"
-                                aria-labelledby="2">
-                                <ul class="list-style-none">
-                                    <li>
-                                        <div class="">
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)" class="link border-top">
-                                                <div class="d-flex no-block align-items-center p-10">
-                                                    <span class="btn btn-success btn-circle"><i
-                                                            class="ti-calendar"></i></span>
-                                                    <div class="m-l-10">
-                                                        <h5 class="m-b-0">Event Notifications</h5>
-                                                        <span class="mail-desc">Ongoing Events</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
+                        
 
 
                         <!-- ============================================================== -->
@@ -194,7 +166,7 @@
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="wildlife_monitor.html" aria-expanded="false"><i
                                     class="mdi mdi-border-inside"></i><span class="hide-menu">Wildlife
-                                    Monitoring</span></a></li>
+                                    Information</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="finance.html" aria-expanded="false"><i class="mdi mdi-blur-linear"></i><span
                                     class="hide-menu">Financial Overview</span></a></li>
@@ -325,7 +297,7 @@
                                             </tr>
                                         </thead>
                                         <tbody id="tbody_tasks"></tbody>
-                                        
+
                                     </table>
                                 </div>
 
@@ -432,7 +404,7 @@
                                         <label for="rid" class="col-sm-3 text-right control-label col-form-label">Ranger
                                             ID</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="rid"
+                                            <input type="text" class="form-control" id="Rid"
                                                 placeholder="Ranger ID Here">
                                         </div>
                                     </div>
@@ -466,9 +438,7 @@
                                     <div class="card-body">
 
                                         <button type="button" id="submitData" class="btn btn-primary">Submit</button>
-                                        <button type="button" id="updateData" class="btn btn-success">Update</button>
-                                        <button type="button" id="deleteData" class="btn btn-danger">Delete</button>
-                                        <button type="button" id="getData" class="btn btn-warning">Get Data</button>
+
                                         <button type="reset" class="btn btn-secondary">Reset</button>
                                     </div>
                                 </div>
@@ -613,18 +583,21 @@
 
                 <!-- End Right sidebar -->
 
+                <!-- footer -->
+
+                <footer class="footer text-center">
+                    All Rights Reserved by Group B7 (University of Plymouth Group Project). Designed & Developed by
+                    Group
+                    B7.
+                </footer>
+
+                <!-- End footer -->
+
             </div>
 
             <!-- End Container fluid  -->
 
-            <!-- footer -->
 
-            <footer class="footer text-center">
-                All Rights Reserved by Group B7 (University of Plymouth Group Project). Designed & Developed by Group
-                B7.
-            </footer>
-
-            <!-- End footer -->
 
         </div>
 
@@ -733,7 +706,7 @@
 <script type="module">
 
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-    import { getFirestore, setDoc, addDoc, doc, collection, updateDoc, deleteDoc, query, where, getDoc, getDocs, onSnapshot } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+    import { getFirestore, setDoc, addDoc, doc, collection, updateDoc, deleteDoc, query, where, getDoc, getDocs, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
     import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
     import { getAuth, createUserWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
 
@@ -754,44 +727,60 @@
     const database = getDatabase(app);
     const auth = getAuth();
 
-    document.getElementById("submitTask").addEventListener("click", function () {
-            var templateParams = {
-                email: document.getElementById("remail").value,
-                notes: 'Check this out!',
-            };
 
-            emailjs.send('service_yxy8ke7', 'template_in0beoi', templateParams).then(
-                (response) => {
-                    console.log('SUCCESS!', response.status, response.text);
-                },
-                (error) => {
-                    console.log('FAILED...', error);
-                },
-            );
-        });
+    // send mails
+    document.getElementById("submitTask").addEventListener("click", function () {
+        var templateParams = {
+            email: document.getElementById("remail").value,
+            notes: 'Check this out!',
+        };
+
+        emailjs.send('service_yxy8ke7', 'template_in0beoi', templateParams).then(
+            (response) => {
+                console.log('SUCCESS!', response.status, response.text);
+            },
+            (error) => {
+                console.log('FAILED...', error);
+            },
+        );
+    });
 
 
     // Register Rangers 
     submitData.addEventListener('click', (e) => {
 
         var name = document.getElementById('name').value;
-        var rangerID = document.getElementById('rid').value;
+        var rangerID = document.getElementById('Rid').value;
         var contactNo = document.getElementById('no').value;
         var email = document.getElementById('email').value;
         var address = document.getElementById('address').value;
 
-        addDoc(collection(db, "rangers"), {
-            name: name,
-            rid: rangerID,
-            contactNo: contactNo,
-            email: email,
-            address: address
-        });
+        var currentDate = new Date();
 
-        alert("Ranger Added!");
-
+        // Now let's check if the rangerID is not empty before adding to Firestore
+        if (name && rangerID && contactNo && email && address) {
+            addDoc(collection(db, "rangers"), {
+                name: name,
+                rid: rangerID,
+                contactNo: contactNo,
+                email: email,
+                address: address,
+                date: currentDate
+            })
+                .then(() => {
+                    alert("Ranger Added!");
+                })
+                .catch((error) => {
+                    console.error("Error adding ranger: ", error);
+                    alert("An error occurred while adding the ranger.");
+                });
+        } else {
+            alert("Please fill in all fields.");
+        }
     });
 
+
+    /*
     updateData.addEventListener('click', (e) => {
 
         var name = document.getElementById('name').value;
@@ -811,9 +800,10 @@
         alert("Ranger Updated!");
 
     });
+    */
 
 
-
+    /*
     deleteData.addEventListener('click', (e) => {
 
         var name = document.getElementById('name').value;
@@ -824,6 +814,7 @@
         alert("Ranger Deleted!");
 
     });
+    */
 
 
     // submit tasks
@@ -903,6 +894,8 @@
         querySnapshot.forEach(doc => {
             const data = doc.data();
             id++;
+
+
             const newRow = `<tr>
                                 <td>${id}</td>
                                 <td>${data.rid}</td>
