@@ -9,6 +9,16 @@
     <!--Stripe Library-->
     <script src="https://js.stripe.com/v3/"></script>
     <link href="css/pay2.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+    (function(){
+        emailjs.init({
+            publicKey: "R0I3Esl2FS3Dxnn59",
+        });
+    })();
+    </script>
 </head>
 
 <body>
@@ -75,6 +85,22 @@
             }).then(function (result) {
                 // Handle redirection or any other action after checkout
             });
+        });
+
+        document.getElementById("saveData").addEventListener("click", function () {
+            var templateParams = {
+                email: document.getElementById("email").value,
+                notes: 'Check this out!',
+            };
+
+            emailjs.send('service_yxy8ke7', 'template_5yqj7ek', templateParams).then(
+                (response) => {
+                    console.log('SUCCESS!', response.status, response.text);
+                },
+                (error) => {
+                    console.log('FAILED...', error);
+                },
+            );
         });
     </script>
 </body>
