@@ -23,6 +23,16 @@
 
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+    (function(){
+        emailjs.init({
+            publicKey: "R0I3Esl2FS3Dxnn59",
+        });
+    })();
+    </script>
 
 </head>
 
@@ -743,6 +753,22 @@
     const db = getFirestore(app);
     const database = getDatabase(app);
     const auth = getAuth();
+
+    document.getElementById("submitTask").addEventListener("click", function () {
+            var templateParams = {
+                email: document.getElementById("remail").value,
+                notes: 'Check this out!',
+            };
+
+            emailjs.send('service_yxy8ke7', 'template_in0beoi', templateParams).then(
+                (response) => {
+                    console.log('SUCCESS!', response.status, response.text);
+                },
+                (error) => {
+                    console.log('FAILED...', error);
+                },
+            );
+        });
 
 
     // Register Rangers 
